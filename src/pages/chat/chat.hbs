@@ -1,3 +1,12 @@
-<div class="error-500">
-  {{> Error status="500" message="Упс, у нас что то сломалось" href="chat" }}
-</div>
+<section class="chat-page">
+    {{>Sidebar }}
+    <div class="chat-list">
+     	{{> Input className="input-field__element" type="text" placeholder="Поиск..." name="search" }}
+		{{#> ChatItems className="chats" }}
+			{{#each (chat-list)}}
+				{{> ChatItem }}
+			{{/each}}
+		{{/ ChatItems }}
+    </div>
+	{{> ChatWindow nickname="Алуа" }}
+</section>

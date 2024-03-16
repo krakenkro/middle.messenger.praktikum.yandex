@@ -17,7 +17,7 @@
 
 `npm run build` - сборка
 
-`npm run start` - запуск проекта
+`npm run dev` - запуск проекта
 
 ## Домен
 

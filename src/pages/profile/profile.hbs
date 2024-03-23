@@ -1,0 +1,40 @@
+<section class="profile">
+	{{>Sidebar }}
+	<div class="profile__wrapper">
+		<div class="profile__header">
+			{{> Avatar imageUrl="/ava.jpg" size="medium"}}
+			<h1 class="profile-username">Иван</h1>
+		</div>
+		<div class="profile__info">
+			<div class="profile__info-item">
+				<span class="profile__info-label">Почта:</span>
+				<span class="profile__info-value">pochta@yandex.ru</span>
+			</div>
+			<div class="profile__info-item">
+				<span class="profile__info-label">Логин:</span>
+				<span class="profile__info-value">ivanivanov</span>
+			</div>
+			<div class="profile__info-item">
+				<span class="profile__info-label">Имя:</span>
+				<span class="profile__info-value">Иван</span>
+			</div>
+			<div class="profile__info-item">
+				<span class="profile__info-label">Фамилия:</span>
+				<span class="profile__info-value">Иванов</span>
+			</div>
+			<div class="profile__info-item">
+				<span class="profile__info-label">Имя в чате:</span>
+				<span class="profile__info-value">Иван</span>
+			</div>
+			<div class="profile__info-item">
+				<span class="profile__info-label">Телефон:</span>
+				<span class="profile__info-value">+7 (909) 967 30 30</span>
+			</div>
+		</div>
+		<div class="profile__actions">
+			{{> Link text="Изменить данные" page="edit" url="/edit" }}
+			{{> Link text="Изменить пароль" page="change-password" url="/change-password" }}
+			{{> Link text="Выйти" page="login" url="/login" }}
+		</div>
+	</div>
+</section>

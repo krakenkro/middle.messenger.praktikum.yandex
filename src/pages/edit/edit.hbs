@@ -1,0 +1,13 @@
+<section class="edit">
+    {{>Sidebar }}
+    <form class="edit__form">
+        {{> BaseTitle title="Изменить данные"}}
+		{{> InputField title="Почта" name="email" }}
+		{{> InputField title="Логин" name="login" }}
+		{{> InputField title="Имя" name="first_name" }}
+		{{> InputField title="Фамилия" name="second_name" }}
+		{{> InputField title="Имя в чате" name="display_name" }}
+		{{> InputField title="Телефон" name="phone" }}
+		{{> Button text="Сохранить" page="profile" }}
+    </form>
+</section>

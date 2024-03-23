@@ -1,0 +1,39 @@
+.chat-item {
+	display: flex;
+	padding: 10px;
+	background-color: #f9f9f9;
+	margin-bottom: 5px;
+	cursor: pointer;
+	gap: 15px;
+	justify-content: space-between;
+	height: 70px;
+
+	&__message {
+		overflow: hidden;
+	}
+
+    &__info {
+        display: grid;
+        grid-template-columns: 1fr 40px;
+        gap: 10px;
+        width: 100%;
+    }
+
+    &__time {
+        text-align: end;
+    }
+    
+    &__count {
+        display: flex;
+        justify-content: end;
+    }
+    
+    &__count span {
+        display: block;
+        border-radius: 16px;
+        background-color: #c4bfbf;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+    }
+}

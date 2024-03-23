@@ -1,0 +1,9 @@
+<section class="container">
+	<form class="auth-form">
+		{{> BaseTitle title="Авторизация"}}
+		{{> InputField className="auth-form__input" title="Логин" name="login" }}
+		{{> InputField className="auth-form__input" type="password" title="Пароль" name="password" }}
+		{{> Button text="Войти" page="chat" }}
+		{{> Link text="Зарегистрироваться" page="registration" url="/registration" }}
+	</form> 
+</section>

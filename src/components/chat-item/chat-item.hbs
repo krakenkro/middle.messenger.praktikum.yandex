@@ -1,0 +1,15 @@
+<div class="chat-item" data-nickname="{{nickname}}">
+    {{#if avatarUrl}}
+        {{> Avatar imageUrl=avatarUrl size="medium"}}
+    {{/if}}
+    <div class="chat-item__info">
+        <div class="chat-item__name">{{nickname}}</div>
+        <div class="chat-item__time">{{lastMessageTime}}</div>
+        <div class="chat-item__message">{{lastMessage}}</div>
+        {{#if unreadCount}}
+            <div class="chat-item__count">
+                <span>{{unreadCount}}</span>
+            </div>
+        {{/if}}
+    </div>
+</div>

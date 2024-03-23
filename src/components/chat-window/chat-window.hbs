@@ -1,0 +1,29 @@
+
+ <div class="chat-window">
+    <div class="chat-window__header">
+        <div class="chat-window__user-info">
+            {{> Avatar imageUrl="/ava.jpg" size="small"}}
+            <span class="user-info__username">{{nickname}}</span>
+        </div>
+        <button class="chat-window__menu">
+            <img src="/menu.png" alt="burger">
+        </button>
+    </div>
+    <div class="chat-window__area">
+        <div class="chat-window__message chat-window__message_received">
+            <span class="chat-window__message-content">Угощайтесь тортиком на кухне</span>
+            <span class="chat-window__message-time">12:53</span>
+        </div>
+        <div class="chat-window__message chat-window__message_sent">
+            <span class="chat-window__message-content">Рахмет</span>
+            <span class="chat-window__message-time">12:54</span>
+        </div>
+    </div>
+    <form class="chat-window__form">
+        <button class="chat-window__form-paperclip">
+            <img src="/paperclip.png" alt="paperclip">
+        </button>
+        {{> Input className="chat-window__form-input" type="text" name="message" }}
+        {{> Button text="Отправить" }}
+    </form>
+</div>

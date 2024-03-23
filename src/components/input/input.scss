@@ -1,0 +1,19 @@
+@import '../../assets/scss/vars.scss';
+
+.input {
+    &-field__title {
+        margin-bottom: 7px;
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    &__element {
+        border-radius: 10px;
+        height: 40px;
+        padding: 13px 15px;
+        font-weight: 300;
+        font-size: 16px;
+        border: 1px solid $color-gray-1;
+        width: 100%;
+    }
+}

@@ -23,5 +23,8 @@
     "stylelint": "^16.3.0",
     "typescript": "^5.2.2",
     "vite": "^5.1.4"
+  },
+  "dependencies": {
+    "nanoid": "^5.0.7"
   }
 }

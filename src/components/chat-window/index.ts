@@ -1,2 +1,2 @@
-import './chat-window.scss';
-export { default as ChatWindow } from './chat-window.hbs?raw';
+// export { default as ChatWindow } from './chat-window.hbs?raw';
+export { ChatWindow } from './chat-window.ts';

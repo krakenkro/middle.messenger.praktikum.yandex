@@ -18,9 +18,9 @@ export default class Block<P extends BlockProps = {}> {
 
     private _element: HTMLElement | null = null;
     public eventBus: () => EventBus;
-    private _id: string = nanoid(6);
+    _id: string = nanoid(6);
 
-    public props: P;
+    protected props: P;
     public children: BlockChildren;
     public lists: BlockLists;
 
@@ -161,10 +161,12 @@ export default class Block<P extends BlockProps = {}> {
                 if (item instanceof Block) {
                     listCont.content.append(item.getContent());
                 } else {
+                    console.log(item)
                     listCont.content.append(`${item}`);
                 }
             });
             const stub = fragment.content.querySelector(`[data-id="__l_${_tmpId}"]`);
+            console.log(listCont.content)
             stub?.replaceWith(listCont.content);
         });
 

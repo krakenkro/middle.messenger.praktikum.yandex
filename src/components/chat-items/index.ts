@@ -1,2 +1,2 @@
 // export { default as ChatItems } from './chat-items.hbs?raw';
-export { ChatItems } from './chat-items.ts';
+export { ChatItems } from './chat-items';

@@ -1,42 +1,40 @@
-import { Avatar, Link, Sidebar } from "../../components";
-import Block from "../../core/Block";
+import { Avatar, Link, Sidebar } from '../../components';
+import Block from '../../core/Block';
 import './profile.scss';
 
-export class PageProfile extends Block<Record<string, unknown>> {
-    constructor(props: Record<string, unknown>) {
-        super({
-            ...props,
-        });
-    }
+export default class PageProfile extends Block<Record<string, unknown>> {
+	constructor(props: Record<string, unknown>) {
+		super({
+			...props,
+		});
+	}
 
-    protected init(): void {
-        const createLinks = (text: string, page: string): Link => {
-            return new Link({
-                text,
-                page,
-            });
-        };
-        const links = {
-            linkEdit: createLinks('Изменить данные', 'edit'),
-            linkChangePassword: createLinks('Изменить пароль', 'change-password'),
-            linkLogout: createLinks('Выйти', 'login'),
-        };
-        const sidebar = new Sidebar({});
-        const avatar = new Avatar({
-            imageUrl: '../../assets/images/ava.jpg',
-            size: 'medium'
-        });
+	protected init(): void {
+		const createLinks = (text: string, page: string): Link => new Link({
+			text,
+			page,
+		});
+		const links = {
+			linkEdit: createLinks('Изменить данные', 'edit'),
+			linkChangePassword: createLinks('Изменить пароль', 'change-password'),
+			linkLogout: createLinks('Выйти', 'login'),
+		};
+		const sidebar = new Sidebar({});
+		const avatar = new Avatar({
+			imageUrl: '../../assets/images/ava.jpg',
+			size: 'medium',
+		});
 
-        this.children = {
-            ...this.children,
-            ...links,
-            sidebar,
-            avatar
-        };
-    }
+		this.children = {
+			...this.children,
+			...links,
+			sidebar,
+			avatar,
+		};
+	}
 
-    protected render() {
-        return `
+	protected render() {
+		return `
         <section class="profile">
         {{{ sidebar }}}
         <div class="profile__wrapper">
@@ -78,5 +76,5 @@ export class PageProfile extends Block<Record<string, unknown>> {
         </div>
     </section>
         `;
-    }
+	}
 }

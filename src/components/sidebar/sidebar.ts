@@ -1,13 +1,14 @@
-import Block from "../../core/Block";
-export class Sidebar extends Block<Record<string, unknown>> {
-    constructor(props: Record<string, unknown>) {
-        super({
-            ...props,
-        });
-    }
+import Block from '../../core/Block';
 
-    protected render() {
-        return `
+export class Sidebar extends Block<Record<string, unknown>> {
+	constructor(props: Record<string, unknown>) {
+		super({
+			...props,
+		});
+	}
+
+	protected render() {
+		return `
             <nav class="sidebar">
                 <ul class="sidebar__menu">
                     <li class="sidebar__menu-item">
@@ -37,5 +38,5 @@ export class Sidebar extends Block<Record<string, unknown>> {
                 </ul>
             </nav>
         `;
-    }
+	}
 }

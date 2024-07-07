@@ -13,7 +13,11 @@
         "no-tabs": "off",
         "quotes": ["error", "single"],
         "semi": ["error", "always"],
+        "linebreak-style": ["warn", "unix"],
         "import/no-extraneous-dependencies": "off",
+        "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+        "class-methods-use-this": "off",
+        "import/prefer-default-export": "off",
         "indent": [
             "warn",
             "tab",
@@ -22,6 +26,30 @@
              "MemberExpression": 1,
              "ObjectExpression": 1
             }
-        ]
+        ],
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+              "js": "never",
+              "jsx": "never",
+              "ts": "never",
+              "tsx": "never",
+              "vue": "never"
+            }
+          ],
+          "import/no-unresolved": [
+            2,
+            {
+              "ignore": ["^@/"]
+            }
+          ]
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx", ".vue"]
+            }
+        }
     }
 }

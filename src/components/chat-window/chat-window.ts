@@ -1,41 +1,40 @@
-import { Avatar, Input, Button } from "../../components";
-import Block from "../../core/Block";
+import { Avatar, Input, Button } from '..';
+import Block from '../../core/Block';
 import './chat-window.scss';
 
 export class ChatWindow extends Block<Record<string, unknown>> {
-    constructor(props: Record<string, unknown>) {
-        super({
-            ...props,
-        });
-    }
+	constructor(props: Record<string, unknown>) {
+		super({
+			...props,
+		});
+	}
 
-    protected init(): void {
-        
-        const avatar = new Avatar({
-            imageUrl: '../../assets/images/ava.jpg',
-            size: 'medium'
-        });
+	protected init(): void {
+		const avatar = new Avatar({
+			imageUrl: '../../assets/images/ava.jpg',
+			size: 'medium',
+		});
 
-        const input = new Input({
-            className: 'chat-window__form-input',
-            type: 'text',
-            name: 'message'
-        });
+		const input = new Input({
+			className: 'chat-window__form-input',
+			type: 'text',
+			name: 'message',
+		});
 
-        const button = new Button({
-            text: 'Отправить'
-        })
+		const button = new Button({
+			text: 'Отправить',
+		});
 
-        this.children = {
-            ...this.children,
-            avatar,
-            input,
-            button
-        };
-    }
+		this.children = {
+			...this.children,
+			avatar,
+			input,
+			button,
+		};
+	}
 
-    protected render() {
-        return `
+	protected render() {
+		return `
         <div class="chat-window">
             <div class="chat-window__header">
                 <div class="chat-window__user-info">
@@ -65,5 +64,5 @@ export class ChatWindow extends Block<Record<string, unknown>> {
             </form>
         </div>
         `;
-    }
+	}
 }

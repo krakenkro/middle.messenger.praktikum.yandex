@@ -5,6 +5,12 @@
     "module": "ESNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
+    "outDir": "dist",
+    "declaration": false,
+    // "module": "commonjs",
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "noImplicitAny": true,
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -17,7 +23,7 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
   },
   "include": ["src"]
 }

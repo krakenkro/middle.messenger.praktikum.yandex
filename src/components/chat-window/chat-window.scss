@@ -68,11 +68,11 @@
         border-radius: 10px;
     }
 
-    &__message_received .chat-window__message-content {
+    &__message_received &__message-content {
         background-color: #e0e0e0;
     }
 
-    &__message_sent .chat-window__message-content {
+    &__message_sent &__message-content {
         background-color: #007bff;
         color: #fff;
     }

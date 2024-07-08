@@ -13,10 +13,7 @@ export default class HttpClient {
 	): Promise<any> {
 		return new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
-			const url =
-				method === 'GET' && body
-					? `${endpoint}?${this.buildQueryString(body)}`
-					: endpoint;
+			const url = method === 'GET' && body ? `${endpoint}?${this.buildQueryString(body)}` : endpoint;
 
 			xhr.open(method, this.baseUrl + url);
 

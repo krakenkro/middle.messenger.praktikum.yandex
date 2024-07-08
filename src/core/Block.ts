@@ -55,8 +55,7 @@ export default class Block<P extends BlockProps = {}> {
 			// eslint-disable-next-line no-undef
 			if (Array.isArray(events[eventName])) {
 				events[eventName].forEach(
-					(event: EventListenerOrEventListenerObject) =>
-						this._element?.removeEventListener(eventName, event),
+					(event: EventListenerOrEventListenerObject) => this._element?.removeEventListener(eventName, event),
 				);
 			}
 		});

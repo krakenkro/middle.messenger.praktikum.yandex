@@ -23,10 +23,7 @@ export default class EventBus {
 		);
 	}
 
-	emit<F extends (...args: any) => void>(
-		event: string,
-		...args: Parameters<F>
-	) {
+	emit<F extends (...args: any) => void>(event: string, ...args: Parameters<F>) {
 		if (!this.listeners[event]) {
 			throw new Error(`Нет события: ${event}`);
 		}

@@ -15,6 +15,7 @@
 		"semi": ["error", "always"],
 		"linebreak-style": ["warn", "unix"],
 		"import/no-extraneous-dependencies": "off",
+    "quotes": ["error", "consistent"],
 		"no-underscore-dangle": ["error", { "allowAfterThis": true }],
 		"class-methods-use-this": "off",
 		"import/prefer-default-export": "off",

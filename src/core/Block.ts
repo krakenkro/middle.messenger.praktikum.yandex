@@ -44,7 +44,7 @@ export default class Block<P extends BlockProps = {}> {
 
 	private _addEvents() {
 		const { events = {} } = this.props;
-		Object.keys(events).forEach((eventName) => { this._element?.addEventListener(eventName, events[eventName]); });
+		Object.keys(events).forEach((eventName) => { this._element?.addEventListener(eventName, events[eventName], true); });
 	}
 
 	private _removeEvents(): void {

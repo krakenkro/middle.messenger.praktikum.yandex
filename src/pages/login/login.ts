@@ -1,56 +1,67 @@
 import {
-	BaseTitle, Button, InputField, Link,
+    BaseTitle, Button, InputField, Link,
 } from '../../components';
 import Block from '../../core/Block';
+import { loginPattern, passwordPattern } from '../../utils/patterns';
 
 export default class PageLogin extends Block<Record<string, unknown>> {
-	constructor(props: Record<string, unknown>) {
-		super({
-			...props,
-			baseTitle: new BaseTitle({
-				title: 'Авторизация',
-			}),
-		});
-	}
+    constructor(props: Record<string, unknown>) {
+        super({
+            ...props,
+            baseTitle: new BaseTitle({
+                title: 'Авторизация',
+            }),
+        });
+    }
 
-	protected init(): void {
-		const inputFieldLogin = new InputField({
-			className: 'auth-form__input',
-			title: 'Логин',
-			name: 'login',
-		});
+    protected init(): void {
+        const inputFieldLogin = new InputField({
+            className: 'auth-form__input',
+            title: 'Логин',
+            name: 'login',
+            pattern: loginPattern,
+        });
 
-		const inputFieldPassword = new InputField({
-			className: 'auth-form__input',
-			title: 'Пароль',
-			name: 'password',
-			type: 'password',
-		});
+        const inputFieldPassword = new InputField({
+            className: 'auth-form__input',
+            title: 'Пароль',
+            name: 'password',
+            type: 'password',
+            pattern: passwordPattern,
+        });
 
-		const button = new Button({
-			text: 'Войти',
-			// page: 'chat',
-			onClick: (e: MouseEvent) => {
-				e.preventDefault();
-			},
-		});
+        const button = new Button({
+            text: 'Войти',
+            onClick: (e: MouseEvent) => {
+                e.preventDefault();
+                const loginElement = inputFieldLogin.getContent().querySelector('input') as HTMLInputElement;
+                const passwordElement = inputFieldPassword.getContent().querySelector('input') as HTMLInputElement;
 
-		const link = new Link({
-			text: 'Зарегистрироваться',
-			page: 'registration',
-		});
+                const isLoginValid = inputFieldLogin.validate(loginElement);
+                const isPasswordValid = inputFieldPassword.validate(passwordElement);
 
-		this.children = {
-			...this.children,
-			inputFieldLogin,
-			inputFieldPassword,
-			button,
-			link,
-		};
-	}
+                if (isLoginValid && isPasswordValid) {
+                    console.log(loginElement.value, passwordElement.value);
+                }
+            },
+        });
 
-	protected render() {
-		return `
+        const link = new Link({
+            text: 'Зарегистрироваться',
+            page: 'registration',
+        });
+
+        this.children = {
+            ...this.children,
+            inputFieldLogin,
+            inputFieldPassword,
+            button,
+            link,
+        };
+    }
+
+    protected render() {
+        return `
         <section class="container">
             <form class="auth-form">
                 {{{baseTitle}}}
@@ -61,5 +72,5 @@ export default class PageLogin extends Block<Record<string, unknown>> {
             </form> 
         </section>
         `;
-	}
+    }
 }

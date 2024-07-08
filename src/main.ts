@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	if (page) {
 		navigate(page);
 	} else {
-		navigate('404');
+		navigate('chat');
 	}
 });
 document.addEventListener('click', (e: MouseEvent) => {

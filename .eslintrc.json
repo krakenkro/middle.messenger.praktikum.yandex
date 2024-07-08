@@ -43,6 +43,5 @@
 				"extensions": [".js", ".jsx", ".ts", ".tsx", ".vue"]
 			}
 		}
-	},
-	"fix": true
+	}
 }

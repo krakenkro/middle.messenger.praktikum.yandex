@@ -8,17 +8,19 @@ body {
 }
 
 html {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-*, *::before, *::after {
-    box-sizing: inherit;
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
 }
 
 main {
-  	flex: 1 0 auto;
+	flex: 1 0 auto;
 }
 
 .container {
-    margin: 100px 0;
+	margin: 100px 0;
 }

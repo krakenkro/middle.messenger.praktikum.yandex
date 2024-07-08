@@ -1,6 +1,5 @@
 import Block from '../../core/Block';
 import { ChatItem } from '../chat-item/chat-item';
-import './chat-items.scss';
 
 export class ChatItems extends Block<Record<string, unknown>> {
 	constructor(props: Record<string, unknown>) {
@@ -30,10 +29,10 @@ export class ChatItems extends Block<Record<string, unknown>> {
 
 	protected render() {
 		return `
-        <div class="{{className}}">
-        {{{lists}}}
-        </div>
-        `;
+		<div class="{{className}}">
+		{{{lists}}}
+		</div>
+		`;
 	}
 }
 // import Block from "../../core/Block";

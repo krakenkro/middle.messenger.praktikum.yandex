@@ -7,19 +7,14 @@
     "skipLibCheck": true,
     "outDir": "dist",
     "declaration": false,
-    // "module": "commonjs",
     "strictNullChecks": true,
     "sourceMap": true,
     "noImplicitAny": true,
-
-    /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-
-    /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

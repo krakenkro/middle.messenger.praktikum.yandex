@@ -6,7 +6,7 @@ export class Button extends Block {
 			...props,
 			events: {
 				click: props.onClick,
-			},
+			}
 		});
 	}
 

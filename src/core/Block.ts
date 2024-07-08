@@ -31,8 +31,7 @@ export default class Block<P extends BlockProps = {}> {
 
 	constructor(propsWithChildren: P) {
 		const eventBus = new EventBus();
-		const { props, children, lists } =
-			this._getChildrenAndProps(propsWithChildren);
+		const { props, children, lists } = this._getChildrenAndProps(propsWithChildren);
 
 		this.props = this._makePropsProxy({ ...props });
 		this.children = children;
@@ -54,11 +53,12 @@ export default class Block<P extends BlockProps = {}> {
 		const { events = {} } = this.props;
 		Object.keys(events).forEach((eventName) => {
 			// eslint-disable-next-line no-undef
-			if (Array.isArray(events[eventName]))
+			if (Array.isArray(events[eventName])) {
 				events[eventName].forEach(
 					(event: EventListenerOrEventListenerObject) =>
 						this._element?.removeEventListener(eventName, event),
 				);
+			}
 		});
 	}
 

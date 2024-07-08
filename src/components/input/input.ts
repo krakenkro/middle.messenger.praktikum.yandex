@@ -16,10 +16,6 @@ export interface InputProps {
 }
 
 export class Input extends Block<InputProps> {
-	constructor(props: InputProps) {
-		super(props);
-	}
-
 	protected addEvents() {
 		const { events = {} } = this.props;
 
@@ -28,7 +24,7 @@ export class Input extends Block<InputProps> {
 				.querySelector('input')
 				?.addEventListener(
 					eventName,
-					events[eventName] as EventListener,
+					events[eventName] as EventListenerOrEventListenerObject,
 				);
 		});
 	}
@@ -41,7 +37,7 @@ export class Input extends Block<InputProps> {
 				.querySelector('input')
 				?.removeEventListener(
 					eventName,
-					events[eventName] as EventListener,
+					events[eventName] as EventListenerOrEventListenerObject,
 				);
 		});
 	}

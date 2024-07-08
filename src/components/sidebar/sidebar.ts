@@ -1,13 +1,7 @@
 import Block from '../../core/Block';
 
 export class Sidebar extends Block<Record<string, unknown>> {
-	constructor(props: Record<string, unknown>) {
-		super({
-			...props,
-		});
-	}
-
-	protected render() {
+    protected render() {
 		return `
             <nav class="sidebar">
                 <ul class="sidebar__menu">

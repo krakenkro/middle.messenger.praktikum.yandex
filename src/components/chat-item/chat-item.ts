@@ -3,12 +3,6 @@ import Block from '../../core/Block';
 import './chat-item.scss';
 
 export class ChatItem extends Block<Record<string, unknown>> {
-	constructor(props: Record<string, unknown>) {
-		super({
-			...props,
-		});
-	}
-
 	protected init(): void {
 		const avatar = new Avatar({
 			imageUrl: this.props.avatarUrl,

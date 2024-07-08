@@ -3,13 +3,7 @@ import Block from '../../core/Block';
 import './chat-window.scss';
 
 export class ChatWindow extends Block<Record<string, unknown>> {
-	constructor(props: Record<string, unknown>) {
-		super({
-			...props,
-		});
-	}
-
-	protected init(): void {
+    protected init(): void {
 		const avatar = new Avatar({
 			imageUrl: '../../assets/images/ava.jpg',
 			size: 'medium',
@@ -21,9 +15,7 @@ export class ChatWindow extends Block<Record<string, unknown>> {
 			name: 'message',
 		});
 
-		const button = new Button({
-			text: 'Отправить',
-		});
+		const button = new Button({ text: 'Отправить' });
 
 		this.children = {
 			...this.children,

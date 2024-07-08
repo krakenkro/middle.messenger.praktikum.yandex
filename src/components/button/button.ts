@@ -4,7 +4,7 @@ export class Button extends Block {
 	constructor(props: Record<string, unknown>) {
 		super({
 			...props,
-			events: { click: props.onClick, },
+			events: { click: props.onClick },
 		});
 	}
 

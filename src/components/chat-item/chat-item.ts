@@ -5,19 +5,19 @@ import './chat-item.scss';
 export class ChatItem extends Block<Record<string, unknown>> {
 	constructor(props: Record<string, unknown>) {
 		super({
-			...props
+			...props,
 		});
 	}
 
 	protected init(): void {
 		const avatar = new Avatar({
 			imageUrl: this.props.avatarUrl,
-			size: 'medium'
+			size: 'medium',
 		});
 
 		this.children = {
 			...this.children,
-			avatar
+			avatar,
 		};
 	}
 

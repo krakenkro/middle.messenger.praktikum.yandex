@@ -5,31 +5,31 @@ import './chat-window.scss';
 export class ChatWindow extends Block<Record<string, unknown>> {
 	constructor(props: Record<string, unknown>) {
 		super({
-			...props
+			...props,
 		});
 	}
 
 	protected init(): void {
 		const avatar = new Avatar({
 			imageUrl: '../../assets/images/ava.jpg',
-			size: 'medium'
+			size: 'medium',
 		});
 
 		const input = new Input({
 			className: 'chat-window__form-input',
 			type: 'text',
-			name: 'message'
+			name: 'message',
 		});
 
 		const button = new Button({
-			text: 'Отправить'
+			text: 'Отправить',
 		});
 
 		this.children = {
 			...this.children,
 			avatar,
 			input,
-			button
+			button,
 		};
 	}
 

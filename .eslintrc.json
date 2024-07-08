@@ -14,13 +14,7 @@
 		"no-tabs": "off",
 		"semi": ["error", "always"],
 		"linebreak-style": ["warn", "unix"],
-		"object-curly-newline": ["warn", {
-			"ObjectExpression": { "multiline": true, "minProperties": 1 },
-			"ObjectPattern": { "multiline": true, "minProperties": 1 },
-			"ImportDeclaration": "never",
-			"ExportDeclaration": "never",
-			"destructuring": "never"
-		  }],
+		"object-curly-newline": ["error", { "multiline": true }],
 		"import/no-extraneous-dependencies": "off",
 		"quotes": ["error", "single"],
     	"space-before-function-paren": ["warn", "never"],

@@ -61,8 +61,9 @@ function navigate(page: string): void {
 		return;
 	}
 
-	if (container !== null)
+	if (container !== null) {
 		container.innerHTML = Handlebars.compile(source)(context);
+	}
 }
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -2,7 +2,7 @@ import Block from '../../core/Block';
 
 export class Sidebar extends Block<Record<string, unknown>> {
     protected render() {
-		return `
+        return `
             <nav class="sidebar">
                 <ul class="sidebar__menu">
                     <li class="sidebar__menu-item">
@@ -32,5 +32,5 @@ export class Sidebar extends Block<Record<string, unknown>> {
                 </ul>
             </nav>
         `;
-	}
+    }
 }

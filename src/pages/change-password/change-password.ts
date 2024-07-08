@@ -7,9 +7,7 @@ export default class ChangePassword extends Block<Record<string, unknown>> {
 	constructor(props: Record<string, unknown>) {
 		super({
 			...props,
-			baseTitle: new BaseTitle({
-				title: 'Изменить пароль',
-			}),
+			baseTitle: new BaseTitle({ title: 'Изменить пароль' }),
 		});
 	}
 

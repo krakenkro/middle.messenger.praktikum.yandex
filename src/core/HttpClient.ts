@@ -33,12 +33,10 @@ export default class HttpClient {
 				}
 			};
 
-			xhr.onerror = () =>
-				reject({
-					status: xhr.status,
-					statusText: xhr.statusText,
-					response: xhr.responseText,
-				});
+			xhr.onerror = () => {
+				reject(new Error(`Request failed with status ${xhr.status}: ${xhr.statusText}`));
+			};
+
 
 			if (method === 'GET' || !body) {
 				xhr.send();

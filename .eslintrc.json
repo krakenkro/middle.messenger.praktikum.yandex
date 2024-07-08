@@ -19,7 +19,7 @@
 		"quotes": ["error", "single"],
     	"space-before-function-paren": ["warn", "never"],
     	"no-undef": "off",
-		"no-underscore-dangle": ["warn", { "allowAfterThis": true }],
+		"no-underscore-dangle": ["warn", { "allowAfterThis": true, "allow": ["_id"] }],
 		"class-methods-use-this": "off",
 		"import/prefer-default-export": "off",
 		"indent": ["warn", "tab"],

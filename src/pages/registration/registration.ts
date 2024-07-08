@@ -12,9 +12,7 @@ export default class PageRegistration extends Block<Record<string, unknown>> {
 	constructor(props: Record<string, unknown>) {
 		super({
 			...props,
-			baseTitle: new BaseTitle({
-				title: 'Регистрация',
-			}),
+			baseTitle: new BaseTitle({ title: 'Регистрация' }),
 		});
 	}
 

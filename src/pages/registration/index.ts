@@ -1,3 +1,2 @@
 import './registration.scss';
-// export { default as PageRegistration } from './registration.hbs?raw';
-export { default as PageRegistration } from './registration';
+export { default as PageRegistration } from './registration.hbs?raw';

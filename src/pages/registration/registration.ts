@@ -1,19 +1,19 @@
-import { BaseTitle, Button, InputField, Link } from "../../components";
-import Block from "../../core/Block";
+import { BaseTitle, Button, InputField, Link } from '../../components';
+import Block from '../../core/Block';
 import {
 	loginPattern,
 	passwordPattern,
 	emailPattern,
 	namePattern,
 	phonePattern,
-} from "../../utils/patterns";
+} from '../../utils/patterns';
 
 export default class PageRegistration extends Block<Record<string, unknown>> {
 	constructor(props: Record<string, unknown>) {
 		super({
 			...props,
 			baseTitle: new BaseTitle({
-				title: "Регистрация",
+				title: 'Регистрация',
 			}),
 		});
 	}
@@ -23,10 +23,10 @@ export default class PageRegistration extends Block<Record<string, unknown>> {
 			title: string,
 			name: string,
 			pattern: string,
-			type: string = "text",
+			type: string = 'text',
 		): InputField =>
 			new InputField({
-				className: "auth-form__input",
+				className: 'auth-form__input',
 				title,
 				name,
 				type,
@@ -34,46 +34,46 @@ export default class PageRegistration extends Block<Record<string, unknown>> {
 			});
 
 		const inputFields = {
-			inputFieldEmail: createInputField("Email", "email", emailPattern),
+			inputFieldEmail: createInputField('Email', 'email', emailPattern),
 			inputFieldFirstName: createInputField(
-				"Имя",
-				"first_name",
+				'Имя',
+				'first_name',
 				namePattern,
 			),
 			inputFieldSecondName: createInputField(
-				"Фамилия",
-				"second_name",
+				'Фамилия',
+				'second_name',
 				namePattern,
 			),
-			inputFieldLogin: createInputField("Логин", "login", loginPattern),
+			inputFieldLogin: createInputField('Логин', 'login', loginPattern),
 			inputFieldPhone: createInputField(
-				"Номер телефона",
-				"phone",
+				'Номер телефона',
+				'phone',
 				phonePattern,
 			),
 			inputFieldPassword: createInputField(
-				"Пароль",
-				"password",
+				'Пароль',
+				'password',
 				passwordPattern,
-				"password",
+				'password',
 			),
 			inputFieldPasswordRepeat: createInputField(
-				"Повторите пароль",
-				"password_repeat",
+				'Повторите пароль',
+				'password_repeat',
 				passwordPattern,
-				"password",
+				'password',
 			),
 		};
 
 		const button = new Button({
-			text: "Зарегистрироваться",
+			text: 'Зарегистрироваться',
 			onClick: (e: MouseEvent) => {
 				e.preventDefault();
 
 				const inputs = Object.values(inputFields).map((field) => ({
 					element: field
 						.getContent()
-						.querySelector("input") as HTMLInputElement,
+						.querySelector('input') as HTMLInputElement,
 					field,
 				}));
 
@@ -93,8 +93,8 @@ export default class PageRegistration extends Block<Record<string, unknown>> {
 		});
 
 		const link = new Link({
-			text: "Авторизоваться",
-			page: "login",
+			text: 'Авторизоваться',
+			page: 'login',
 		});
 
 		this.children = {

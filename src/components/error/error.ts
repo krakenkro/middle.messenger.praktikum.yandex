@@ -1,12 +1,12 @@
-import Block from "../../core/Block";
-import { Link } from "../link";
+import Block from '../../core/Block';
+import { Link } from '../link';
 
 export class Error extends Block {
 	constructor(props: Record<string, any>) {
 		super({
 			...props,
 			link: new Link({
-				text: "Назад к чатам",
+				text: 'Назад к чатам',
 				page: props.href,
 			}),
 		});

@@ -1,4 +1,4 @@
-import Block from "../../core/Block";
+import Block from '../../core/Block';
 
 export interface InputProps {
 	id?: string;
@@ -25,7 +25,7 @@ export class Input extends Block<InputProps> {
 
 		Object.keys(events).forEach((eventName) => {
 			this.getContent()
-				.querySelector("input")
+				.querySelector('input')
 				?.addEventListener(
 					eventName,
 					events[eventName] as EventListener,
@@ -38,7 +38,7 @@ export class Input extends Block<InputProps> {
 
 		Object.keys(events).forEach((eventName) => {
 			this.getContent()
-				.querySelector("input")
+				.querySelector('input')
 				?.removeEventListener(
 					eventName,
 					events[eventName] as EventListener,

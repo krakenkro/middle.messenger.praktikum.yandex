@@ -1,14 +1,14 @@
-import { BaseTitle, Button, InputField, Sidebar } from "../../components";
-import Block from "../../core/Block";
-import { passwordPattern } from "../../utils/patterns";
-import "./change-password.scss";
+import { BaseTitle, Button, InputField, Sidebar } from '../../components';
+import Block from '../../core/Block';
+import { passwordPattern } from '../../utils/patterns';
+import './change-password.scss';
 
 export default class ChangePassword extends Block<Record<string, unknown>> {
 	constructor(props: Record<string, unknown>) {
 		super({
 			...props,
 			baseTitle: new BaseTitle({
-				title: "Изменить пароль",
+				title: 'Изменить пароль',
 			}),
 		});
 	}
@@ -18,10 +18,10 @@ export default class ChangePassword extends Block<Record<string, unknown>> {
 			title: string,
 			name: string,
 			pattern: string,
-			type: string = "text",
+			type: string = 'text',
 		): InputField =>
 			new InputField({
-				className: "auth-form__input",
+				className: 'auth-form__input',
 				title,
 				name,
 				pattern,
@@ -29,38 +29,38 @@ export default class ChangePassword extends Block<Record<string, unknown>> {
 			});
 		const inputFields = {
 			inputFieldPassword: createInputField(
-				"Старый пароль",
-				"old_password",
+				'Старый пароль',
+				'old_password',
 				passwordPattern,
-				"password",
+				'password',
 			),
 			inputFieldNewPassword: createInputField(
-				"Новый пароль",
-				"new_password",
+				'Новый пароль',
+				'new_password',
 				passwordPattern,
-				"password",
+				'password',
 			),
 			inputFieldPasswordRepeat: createInputField(
-				"Повторите новый пароль",
-				"repeat_new_password",
+				'Повторите новый пароль',
+				'repeat_new_password',
 				passwordPattern,
-				"password",
+				'password',
 			),
 		};
 		const button = new Button({
-			text: "Сохранить",
+			text: 'Сохранить',
 			onClick: (e: MouseEvent) => {
 				e.preventDefault();
 				const oldPasswordElement = inputFields.inputFieldPassword
 					.getContent()
-					.querySelector("input") as HTMLInputElement;
+					.querySelector('input') as HTMLInputElement;
 				const newPasswordElement = inputFields.inputFieldNewPassword
 					.getContent()
-					.querySelector("input") as HTMLInputElement;
+					.querySelector('input') as HTMLInputElement;
 				const repeatPasswordElement =
 					inputFields.inputFieldPasswordRepeat
 						.getContent()
-						.querySelector("input") as HTMLInputElement;
+						.querySelector('input') as HTMLInputElement;
 
 				const isOldPasswordValid = oldPasswordElement.checkValidity();
 				const isNewPasswordValid = newPasswordElement.checkValidity();
@@ -70,22 +70,22 @@ export default class ChangePassword extends Block<Record<string, unknown>> {
 				inputFields.inputFieldPassword.setProps({
 					isValid: isOldPasswordValid,
 					errorMessage: isOldPasswordValid
-						? ""
-						: "Invalid old password",
+						? ''
+						: 'Invalid old password',
 				});
 
 				inputFields.inputFieldNewPassword.setProps({
 					isValid: isNewPasswordValid,
 					errorMessage: isNewPasswordValid
-						? ""
-						: "Invalid new password",
+						? ''
+						: 'Invalid new password',
 				});
 
 				inputFields.inputFieldPasswordRepeat.setProps({
 					isValid: isRepeatPasswordValid,
 					errorMessage: isRepeatPasswordValid
-						? ""
-						: "Passwords do not match",
+						? ''
+						: 'Passwords do not match',
 				});
 
 				if (

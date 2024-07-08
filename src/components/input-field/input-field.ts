@@ -1,5 +1,5 @@
-import Block from "../../core/Block";
-import { Input, InputProps } from "../input/input";
+import Block from '../../core/Block';
+import { Input, InputProps } from '../input/input';
 
 interface InputFieldProps extends InputProps {
 	title?: string;
@@ -20,7 +20,7 @@ export class InputField extends Block<InputFieldProps> {
 	}
 
 	private handleEvent(event: Event) {
-		if (event instanceof FocusEvent && event.type === "blur") {
+		if (event instanceof FocusEvent && event.type === 'blur') {
 			this.validate(event.target as HTMLInputElement);
 		}
 	}
@@ -33,15 +33,15 @@ export class InputField extends Block<InputFieldProps> {
 				const isValid = regex.test(inputElement.value);
 				this.setProps({
 					isValid,
-					errorMessage: isValid ? "" : "Invalid input",
+					errorMessage: isValid ? '' : 'Invalid input',
 					value: inputElement.value,
 				});
 				return isValid;
 			} catch (error) {
-				console.error("Invalid pattern", error);
+				console.error('Invalid pattern', error);
 				this.setProps({
 					isValid: false,
-					errorMessage: "Invalid pattern",
+					errorMessage: 'Invalid pattern',
 					value: inputElement.value,
 				});
 				return false;
@@ -54,7 +54,7 @@ export class InputField extends Block<InputFieldProps> {
 		const inputElement = new Input({
 			type: this.props.type,
 			title: this.props.title,
-			className: "input-field__element",
+			className: 'input-field__element',
 			name: this.props.name,
 			value: this.props.value,
 			placeholder: this.props.placeholder,

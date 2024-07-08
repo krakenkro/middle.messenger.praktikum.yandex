@@ -14,7 +14,7 @@ export default class HttpClient {
 		return new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
 			const url =
-				method === "GET" && body
+				method === 'GET' && body
 					? `${endpoint}?${this.buildQueryString(body)}`
 					: endpoint;
 
@@ -43,10 +43,10 @@ export default class HttpClient {
 					response: xhr.responseText,
 				});
 
-			if (method === "GET" || !body) {
+			if (method === 'GET' || !body) {
 				xhr.send();
 			} else {
-				xhr.setRequestHeader("Content-Type", "application/json");
+				xhr.setRequestHeader('Content-Type', 'application/json');
 				xhr.send(JSON.stringify(body));
 			}
 		});
@@ -58,7 +58,7 @@ export default class HttpClient {
 				(key) =>
 					`${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`,
 			)
-			.join("&");
+			.join('&');
 	}
 
 	public get(
@@ -66,7 +66,7 @@ export default class HttpClient {
 		params: Record<string, any> = {},
 		headers: Record<string, string> = {},
 	): Promise<any> {
-		return this.request("GET", endpoint, params, headers);
+		return this.request('GET', endpoint, params, headers);
 	}
 
 	public post(
@@ -74,7 +74,7 @@ export default class HttpClient {
 		body: any,
 		headers: Record<string, string> = {},
 	): Promise<any> {
-		return this.request("POST", endpoint, body, headers);
+		return this.request('POST', endpoint, body, headers);
 	}
 
 	public put(
@@ -82,7 +82,7 @@ export default class HttpClient {
 		body: any,
 		headers: Record<string, string> = {},
 	): Promise<any> {
-		return this.request("PUT", endpoint, body, headers);
+		return this.request('PUT', endpoint, body, headers);
 	}
 
 	public delete(
@@ -90,6 +90,6 @@ export default class HttpClient {
 		body: any = null,
 		headers: Record<string, string> = {},
 	): Promise<any> {
-		return this.request("DELETE", endpoint, body, headers);
+		return this.request('DELETE', endpoint, body, headers);
 	}
 }

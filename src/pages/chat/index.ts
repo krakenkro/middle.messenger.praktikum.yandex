@@ -1,4 +1,4 @@
 // import Handlebars from 'handlebars';
-import "./chat.scss";
+import './chat.scss';
 // export { default as PageChat } from './chat.hbs?raw';
-export { default as PageChat } from "./chat";
+export { default as PageChat } from './chat';

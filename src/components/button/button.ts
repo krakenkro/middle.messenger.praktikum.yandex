@@ -1,4 +1,4 @@
-import Block from "../../core/Block";
+import Block from '../../core/Block';
 
 export class Button extends Block {
 	constructor(props: Record<string, unknown>) {

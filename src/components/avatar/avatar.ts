@@ -1,5 +1,5 @@
-import Block from "../../core/Block";
-import "./avatar.scss";
+import Block from '../../core/Block';
+import './avatar.scss';
 
 export class Avatar extends Block {
 	constructor(props: Record<string, any>) {

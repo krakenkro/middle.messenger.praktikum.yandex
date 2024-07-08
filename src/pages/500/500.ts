@@ -1,5 +1,5 @@
-import Block from "../../core/Block";
-import { Error } from "../../components";
+import Block from '../../core/Block';
+import { Error } from '../../components';
 
 interface ErrorType {
 	error: Error;
@@ -10,9 +10,9 @@ export default class Page500 extends Block<ErrorType> {
 		super({
 			...props,
 			error: new Error({
-				status: "500",
-				message: "Упс, у нас что то сломалось",
-				href: "chat",
+				status: '500',
+				message: 'Упс, у нас что то сломалось',
+				href: 'chat',
 			}),
 		});
 	}

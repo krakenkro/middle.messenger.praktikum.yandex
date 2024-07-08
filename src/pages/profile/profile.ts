@@ -1,6 +1,6 @@
-import { Avatar, Link, Sidebar } from "../../components";
-import Block from "../../core/Block";
-import "./profile.scss";
+import { Avatar, Link, Sidebar } from '../../components';
+import Block from '../../core/Block';
+import './profile.scss';
 
 export default class PageProfile extends Block<Record<string, unknown>> {
 	constructor(props: Record<string, unknown>) {
@@ -16,17 +16,17 @@ export default class PageProfile extends Block<Record<string, unknown>> {
 				page,
 			});
 		const links = {
-			linkEdit: createLinks("Изменить данные", "edit"),
+			linkEdit: createLinks('Изменить данные', 'edit'),
 			linkChangePassword: createLinks(
-				"Изменить пароль",
-				"change-password",
+				'Изменить пароль',
+				'change-password',
 			),
-			linkLogout: createLinks("Выйти", "login"),
+			linkLogout: createLinks('Выйти', 'login'),
 		};
 		const sidebar = new Sidebar({});
 		const avatar = new Avatar({
-			imageUrl: "../../assets/images/ava.jpg",
-			size: "medium",
+			imageUrl: '../../assets/images/ava.jpg',
+			size: 'medium',
 		});
 
 		this.children = {

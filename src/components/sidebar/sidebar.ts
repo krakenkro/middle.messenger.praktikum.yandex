@@ -1,4 +1,4 @@
-import Block from "../../core/Block";
+import Block from '../../core/Block';
 
 export class Sidebar extends Block<Record<string, unknown>> {
 	constructor(props: Record<string, unknown>) {

@@ -1,5 +1,5 @@
-import Block from "../../core/Block";
-import { Error } from "../../components";
+import Block from '../../core/Block';
+import { Error } from '../../components';
 
 interface ErrorType {
 	error: Error;
@@ -10,9 +10,9 @@ export default class Page404 extends Block<ErrorType> {
 		super({
 			...props,
 			error: new Error({
-				status: "404",
-				message: "Страница не найдена",
-				href: "chat",
+				status: '404',
+				message: 'Страница не найдена',
+				href: 'chat',
 			}),
 		});
 	}

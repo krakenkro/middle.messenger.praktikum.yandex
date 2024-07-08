@@ -1,19 +1,19 @@
-import { BaseTitle, Button, InputField, Sidebar } from "../../components";
-import Block from "../../core/Block";
+import { BaseTitle, Button, InputField, Sidebar } from '../../components';
+import Block from '../../core/Block';
 import {
 	loginPattern,
 	namePattern,
 	emailPattern,
 	phonePattern,
-} from "../../utils/patterns";
-import "./edit.scss";
+} from '../../utils/patterns';
+import './edit.scss';
 
 export default class PageEdit extends Block<Record<string, unknown>> {
 	constructor(props: Record<string, unknown>) {
 		super({
 			...props,
 			baseTitle: new BaseTitle({
-				title: "Изменить данные",
+				title: 'Изменить данные',
 			}),
 		});
 	}
@@ -23,47 +23,47 @@ export default class PageEdit extends Block<Record<string, unknown>> {
 			title: string,
 			name: string,
 			pattern: string,
-			type: string = "text",
+			type: string = 'text',
 		): InputField =>
 			new InputField({
-				className: "auth-form__input",
+				className: 'auth-form__input',
 				title,
 				name,
 				pattern,
 				type,
 			});
 		const inputFields = {
-			inputFieldEmail: createInputField("Почта", "email", emailPattern),
-			inputFieldLogin: createInputField("Логин", "login", loginPattern),
+			inputFieldEmail: createInputField('Почта', 'email', emailPattern),
+			inputFieldLogin: createInputField('Логин', 'login', loginPattern),
 			inputFieldFirstName: createInputField(
-				"Имя",
-				"first_name",
+				'Имя',
+				'first_name',
 				namePattern,
 			),
 			inputFieldSecondName: createInputField(
-				"Фамилия",
-				"second_name",
+				'Фамилия',
+				'second_name',
 				namePattern,
 			),
 			inputFieldPhone: createInputField(
-				"Номер телефона",
-				"phone",
+				'Номер телефона',
+				'phone',
 				phonePattern,
 			),
 			inputFieldNickName: createInputField(
-				"Имя в чате",
-				"display_name",
+				'Имя в чате',
+				'display_name',
 				namePattern,
 			),
 		};
 		const button = new Button({
-			text: "Сохранить",
+			text: 'Сохранить',
 			onClick: (e: MouseEvent) => {
 				e.preventDefault();
 				const elements = Object.values(inputFields).map((field) => ({
 					element: field
 						.getContent()
-						.querySelector("input") as HTMLInputElement,
+						.querySelector('input') as HTMLInputElement,
 					field,
 				}));
 
@@ -73,7 +73,7 @@ export default class PageEdit extends Block<Record<string, unknown>> {
 					const isValid = element.checkValidity();
 					field.setProps({
 						isValid,
-						errorMessage: isValid ? "" : `Invalid ${element.name}`,
+						errorMessage: isValid ? '' : `Invalid ${element.name}`,
 					});
 					if (!isValid) {
 						isFormValid = false;

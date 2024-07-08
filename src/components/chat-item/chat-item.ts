@@ -1,6 +1,6 @@
-import { Avatar } from "..";
-import Block from "../../core/Block";
-import "./chat-item.scss";
+import { Avatar } from '..';
+import Block from '../../core/Block';
+import './chat-item.scss';
 
 export class ChatItem extends Block<Record<string, unknown>> {
 	constructor(props: Record<string, unknown>) {
@@ -12,7 +12,7 @@ export class ChatItem extends Block<Record<string, unknown>> {
 	protected init(): void {
 		const avatar = new Avatar({
 			imageUrl: this.props.avatarUrl,
-			size: "medium",
+			size: 'medium',
 		});
 
 		this.children = {
@@ -24,7 +24,7 @@ export class ChatItem extends Block<Record<string, unknown>> {
 	protected render() {
 		return `
         <div class="chat-item" data-nickname="{{nickname}}">
-            ${this.props.avatarUrl ? "{{{ avatar }}}" : ""}
+            ${this.props.avatarUrl ? '{{{ avatar }}}' : ''}
             <div class="chat-item__info">
                 <div class="chat-item__name">{{nickname}}</div>
                 <div class="chat-item__time">{{lastMessageTime}}</div>

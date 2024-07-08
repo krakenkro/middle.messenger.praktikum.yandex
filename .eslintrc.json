@@ -1,56 +1,48 @@
 {
-    "root": true,
-    "env": {
-        "browser": true,
-        "node": true
-    },
-    "extends": "airbnb",
-    "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint"],
-    "rules": {
-        "no-console": "off",
-        "@typescript-eslint/no-unused-vars": 2,
-        "max-len": "off",
-        "no-tabs": "off",
-        "quotes": ["error", "single"],
-        "semi": ["error", "always"],
-        "linebreak-style": ["warn", "unix"],
-        "import/no-extraneous-dependencies": "off",
-        "no-underscore-dangle": ["error", { "allowAfterThis": true }],
-        "class-methods-use-this": "off",
-        "import/prefer-default-export": "off",
-        "indent": [
-            "warn",
-            "tab",
-            {
-             "SwitchCase": 1,
-             "MemberExpression": 1,
-             "ObjectExpression": 1
-            }
-        ],
-        "import/extensions": [
-            "error",
-            "ignorePackages",
-            {
-              "js": "never",
-              "jsx": "never",
-              "ts": "never",
-              "tsx": "never",
-              "vue": "never"
-            }
-          ],
-          "import/no-unresolved": [
-            2,
-            {
-              "ignore": ["^@/"]
-            }
-          ]
-    },
-    "settings": {
-        "import/resolver": {
-            "node": {
-                "extensions": [".js", ".jsx", ".ts", ".tsx", ".vue"]
-            }
-        }
-    }
+	"root": true,
+	"env": {
+		"browser": true,
+		"node": true
+	},
+	"extends": "airbnb",
+	"parser": "@typescript-eslint/parser",
+	"plugins": ["@typescript-eslint"],
+	"rules": {
+		"no-console": "off",
+		"@typescript-eslint/no-unused-vars": 2,
+		"max-len": "off",
+		"no-tabs": "off",
+		"semi": ["error", "always"],
+		"linebreak-style": ["warn", "unix"],
+		"import/no-extraneous-dependencies": "off",
+		"no-underscore-dangle": ["error", { "allowAfterThis": true }],
+		"class-methods-use-this": "off",
+		"import/prefer-default-export": "off",
+		"indent": ["warn", "tab"],
+		"import/extensions": [
+			"error",
+			"ignorePackages",
+			{
+				"js": "never",
+				"jsx": "never",
+				"ts": "never",
+				"tsx": "never",
+				"vue": "never"
+			}
+		],
+		"import/no-unresolved": [
+			2,
+			{
+				"ignore": ["^@/"]
+			}
+		]
+	},
+	"settings": {
+		"import/resolver": {
+			"node": {
+				"extensions": [".js", ".jsx", ".ts", ".tsx", ".vue"]
+			}
+		}
+	},
+	"fix": true
 }

@@ -1,72 +1,95 @@
 export default class HttpClient {
-    private baseUrl: string;
+	private baseUrl: string;
 
-    constructor(baseUrl: string) {
-        this.baseUrl = baseUrl;
-    }
+	constructor(baseUrl: string) {
+		this.baseUrl = baseUrl;
+	}
 
-    private request(
-        method: string,
-        endpoint: string,
-        body: any = null,
-        headers: Record<string, string> = {}
-    ): Promise<any> {
-        return new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            const url = method === 'GET' && body ? `${endpoint}?${this.buildQueryString(body)}` : endpoint;
+	private request(
+		method: string,
+		endpoint: string,
+		body: any = null,
+		headers: Record<string, string> = {},
+	): Promise<any> {
+		return new Promise((resolve, reject) => {
+			const xhr = new XMLHttpRequest();
+			const url =
+				method === "GET" && body
+					? `${endpoint}?${this.buildQueryString(body)}`
+					: endpoint;
 
-            xhr.open(method, this.baseUrl + url);
+			xhr.open(method, this.baseUrl + url);
 
-            Object.keys(headers).forEach(key => {
-                xhr.setRequestHeader(key, headers[key]);
-            });
+			Object.keys(headers).forEach((key) => {
+				xhr.setRequestHeader(key, headers[key]);
+			});
 
-            xhr.onload = () => {
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    resolve(JSON.parse(xhr.responseText));
-                } else {
-                    reject({
-                        status: xhr.status,
-                        statusText: xhr.statusText,
-                        response: xhr.responseText,
-                    });
-                }
-            };
+			xhr.onload = () => {
+				if (xhr.status >= 200 && xhr.status < 300) {
+					resolve(JSON.parse(xhr.responseText));
+				} else {
+					reject({
+						status: xhr.status,
+						statusText: xhr.statusText,
+						response: xhr.responseText,
+					});
+				}
+			};
 
-            xhr.onerror = () => reject({
-                status: xhr.status,
-                statusText: xhr.statusText,
-                response: xhr.responseText,
-            });
+			xhr.onerror = () =>
+				reject({
+					status: xhr.status,
+					statusText: xhr.statusText,
+					response: xhr.responseText,
+				});
 
-            if (method === 'GET' || !body) {
-                xhr.send();
-            } else {
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.send(JSON.stringify(body));
-            }
-        });
-    }
+			if (method === "GET" || !body) {
+				xhr.send();
+			} else {
+				xhr.setRequestHeader("Content-Type", "application/json");
+				xhr.send(JSON.stringify(body));
+			}
+		});
+	}
 
-    private buildQueryString(params: Record<string, any>): string {
-        return Object.keys(params)
-            .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
-            .join('&');
-    }
+	private buildQueryString(params: Record<string, any>): string {
+		return Object.keys(params)
+			.map(
+				(key) =>
+					`${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`,
+			)
+			.join("&");
+	}
 
-    public get(endpoint: string, params: Record<string, any> = {}, headers: Record<string, string> = {}): Promise<any> {
-        return this.request('GET', endpoint, params, headers);
-    }
+	public get(
+		endpoint: string,
+		params: Record<string, any> = {},
+		headers: Record<string, string> = {},
+	): Promise<any> {
+		return this.request("GET", endpoint, params, headers);
+	}
 
-    public post(endpoint: string, body: any, headers: Record<string, string> = {}): Promise<any> {
-        return this.request('POST', endpoint, body, headers);
-    }
+	public post(
+		endpoint: string,
+		body: any,
+		headers: Record<string, string> = {},
+	): Promise<any> {
+		return this.request("POST", endpoint, body, headers);
+	}
 
-    public put(endpoint: string, body: any, headers: Record<string, string> = {}): Promise<any> {
-        return this.request('PUT', endpoint, body, headers);
-    }
+	public put(
+		endpoint: string,
+		body: any,
+		headers: Record<string, string> = {},
+	): Promise<any> {
+		return this.request("PUT", endpoint, body, headers);
+	}
 
-    public delete(endpoint: string, body: any = null, headers: Record<string, string> = {}): Promise<any> {
-        return this.request('DELETE', endpoint, body, headers);
-    }
+	public delete(
+		endpoint: string,
+		body: any = null,
+		headers: Record<string, string> = {},
+	): Promise<any> {
+		return this.request("DELETE", endpoint, body, headers);
+	}
 }

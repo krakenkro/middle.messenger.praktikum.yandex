@@ -4,12 +4,12 @@
 
 ## Используемые технологии
 
-- HTML
-- CSS (с PostCSS)
-- TypeScript
-- Handlebars
-- Express
-- Netlify
+-   HTML
+-   CSS (с PostCSS)
+-   TypeScript
+-   Handlebars
+-   Express
+-   Netlify
 
 ## Установка
 

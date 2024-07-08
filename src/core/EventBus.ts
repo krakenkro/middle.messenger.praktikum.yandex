@@ -5,15 +5,15 @@ export default class EventBus {
 		this.listeners = {};
 	}
 
-	on<F extends(...args: any) => void>(event: string, callback: F) {
+	on<F extends (...args: any) => void>(event: string, callback: F) {
 		if (!this.listeners[event]) {
 			this.listeners[event] = [];
 		}
 
-        this.listeners[event]!.push(callback);
+		this.listeners[event]!.push(callback);
 	}
 
-	off<F extends(...args: any) => void>(event: string, callback: F) {
+	off<F extends (...args: any) => void>(event: string, callback: F) {
 		if (!this.listeners[event]) {
 			throw new Error(`Нет события: ${event}`);
 		}
@@ -23,11 +23,16 @@ export default class EventBus {
 		);
 	}
 
-	emit<F extends(...args: any) => void>(event: string, ...args: Parameters<F>) {
+	emit<F extends (...args: any) => void>(
+		event: string,
+		...args: Parameters<F>
+	) {
 		if (!this.listeners[event]) {
 			throw new Error(`Нет события: ${event}`);
 		}
 
-        this.listeners[event]!.forEach((listener) => { listener(...(args as any[])); });
+		this.listeners[event]!.forEach((listener) => {
+			listener(...(args as any[]));
+		});
 	}
 }

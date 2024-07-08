@@ -1,14 +1,12 @@
 {
-    "customSyntax": "postcss-scss",
-    "extends": "stylelint-config-standard",
-    "rules": {
-        "block-no-empty": true,
-        "comment-no-empty": true,
-        "import-notation": "string",
-        "font-family-name-quotes": "always-where-recommended",
-        "selector-class-pattern": "^([a-z][a-zA-Z0-9]*)(-[a-zA-Z0-9]+)*(__[a-zA-Z0-9]+)?$"
-    },
-    "ignoreFiles": [
-        "build/*"
-    ]
+	"customSyntax": "postcss-scss",
+	"extends": "stylelint-config-standard",
+	"rules": {
+		"block-no-empty": true,
+		"comment-no-empty": true,
+		"import-notation": "string",
+		"font-family-name-quotes": "always-where-recommended",
+		"selector-class-pattern": "^([a-z][a-zA-Z0-9]*)(-[a-zA-Z0-9]+)*(__[a-zA-Z0-9]+)?$"
+	},
+	"ignoreFiles": ["build/*"]
 }

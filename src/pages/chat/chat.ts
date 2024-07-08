@@ -1,8 +1,6 @@
-import {
-	ChatItems, ChatWindow, Input, Sidebar,
-} from '../../components';
-import Block from '../../core/Block';
-import './chat.scss';
+import { ChatItems, ChatWindow, Input, Sidebar } from "../../components";
+import Block from "../../core/Block";
+import "./chat.scss";
 
 export default class PageChat extends Block<Record<string, unknown>> {
 	constructor(props: Record<string, unknown>) {
@@ -15,19 +13,19 @@ export default class PageChat extends Block<Record<string, unknown>> {
 		const sidebar = new Sidebar({});
 
 		const input = new Input({
-			className: 'input-field__element',
-			type: 'text',
-			name: 'search',
-			placeholder: 'Поиск...',
+			className: "input-field__element",
+			type: "text",
+			name: "search",
+			placeholder: "Поиск...",
 		});
 
 		const chatItems = new ChatItems({
-			className: 'chats',
+			className: "chats",
 			// chatitems: this.lists.items
 		});
 
 		const chatWindow = new ChatWindow({
-			ickname: 'Алуа',
+			ickname: "Алуа",
 		});
 
 		this.children = {

@@ -1,43 +1,53 @@
-import Block from '../../core/Block';
+import Block from "../../core/Block";
 
 export interface InputProps {
-    id?: string;
-    type?: string;
-    title?: string;
-    className?: string;
-    name?: string;
-    value?: string;
-    placeholder?: string;
-    pattern?: string;
-    required?: boolean;
-    isValid?: boolean;
-    errorMessage?: string;
-    events?: Record<string, (event: Event) => void>;
+	id?: string;
+	type?: string;
+	title?: string;
+	className?: string;
+	name?: string;
+	value?: string;
+	placeholder?: string;
+	pattern?: string;
+	required?: boolean;
+	isValid?: boolean;
+	errorMessage?: string;
+	events?: Record<string, (event: Event) => void>;
 }
 
 export class Input extends Block<InputProps> {
-    constructor(props: InputProps) {
-        super(props);
-    }
+	constructor(props: InputProps) {
+		super(props);
+	}
 
-    protected addEvents() {
-        const { events = {} } = this.props;
+	protected addEvents() {
+		const { events = {} } = this.props;
 
-        Object.keys(events).forEach((eventName) => {
-            this.getContent().querySelector('input')?.addEventListener(eventName, events[eventName] as EventListener);
-        });
-    }
+		Object.keys(events).forEach((eventName) => {
+			this.getContent()
+				.querySelector("input")
+				?.addEventListener(
+					eventName,
+					events[eventName] as EventListener,
+				);
+		});
+	}
 
-    protected removeEvents() {
-        const { events = {} } = this.props;
+	protected removeEvents() {
+		const { events = {} } = this.props;
 
-        Object.keys(events).forEach((eventName) => {
-            this.getContent().querySelector('input')?.removeEventListener(eventName, events[eventName] as EventListener);
-        });
-    }
+		Object.keys(events).forEach((eventName) => {
+			this.getContent()
+				.querySelector("input")
+				?.removeEventListener(
+					eventName,
+					events[eventName] as EventListener,
+				);
+		});
+	}
 
-    protected render() {
-        return `
+	protected render() {
+		return `
         <div class="input{{#if className}} {{className}}{{/if}}">
             <input
                 id="{{id}}"
@@ -55,5 +65,5 @@ export class Input extends Block<InputProps> {
             {{/if}}
         </div>
         `;
-    }
+	}
 }

@@ -1,6 +1,6 @@
-import { nanoid } from 'nanoid';
-import Handlebars from 'handlebars';
-import EventBus from './EventBus';
+import { nanoid } from "nanoid";
+import Handlebars from "handlebars";
+import EventBus from "./EventBus";
 
 type BlockProps = Record<string, any>;
 
@@ -11,10 +11,10 @@ type BlockLists = Record<string, any[]>;
 
 export default class Block<P extends BlockProps = {}> {
 	static EVENTS = {
-		INIT: 'init',
-		FLOW_CDM: 'flow:component-did-mount',
-		FLOW_CDU: 'flow:component-did-update',
-		FLOW_RENDER: 'flow:render',
+		INIT: "init",
+		FLOW_CDM: "flow:component-did-mount",
+		FLOW_CDU: "flow:component-did-update",
+		FLOW_RENDER: "flow:render",
 	} as const;
 
 	private _element: HTMLElement | null = null;
@@ -31,7 +31,8 @@ export default class Block<P extends BlockProps = {}> {
 
 	constructor(propsWithChildren: P) {
 		const eventBus = new EventBus();
-		const { props, children, lists } = this._getChildrenAndProps(propsWithChildren);
+		const { props, children, lists } =
+			this._getChildrenAndProps(propsWithChildren);
 
 		this.props = this._makePropsProxy({ ...props });
 		this.children = children;
@@ -44,14 +45,20 @@ export default class Block<P extends BlockProps = {}> {
 
 	private _addEvents() {
 		const { events = {} } = this.props;
-		Object.keys(events).forEach((eventName) => { this._element?.addEventListener(eventName, events[eventName], true); });
+		Object.keys(events).forEach((eventName) => {
+			this._element?.addEventListener(eventName, events[eventName], true);
+		});
 	}
 
 	private _removeEvents(): void {
 		const { events = {} } = this.props;
 		Object.keys(events).forEach((eventName) => {
 			// eslint-disable-next-line no-undef
-			if (Array.isArray(events[eventName])) events[eventName].forEach((event: EventListenerOrEventListenerObject) => this._element?.removeEventListener(eventName, event));
+			if (Array.isArray(events[eventName]))
+				events[eventName].forEach(
+					(event: EventListenerOrEventListenerObject) =>
+						this._element?.removeEventListener(eventName, event),
+				);
 		});
 	}
 
@@ -105,7 +112,11 @@ export default class Block<P extends BlockProps = {}> {
 	}
 
 	// eslint-disable-next-line class-methods-use-this
-	private _getChildrenAndProps(propsAndChildren: P): { children: BlockChildren; props: P; lists: BlockLists } {
+	private _getChildrenAndProps(propsAndChildren: P): {
+		children: BlockChildren;
+		props: P;
+		lists: BlockLists;
+	} {
 		const children: BlockChildren = {};
 		const props: BlockProps = {};
 		const lists: BlockLists = {};
@@ -157,18 +168,20 @@ export default class Block<P extends BlockProps = {}> {
 			propsAndStubs[key] = `<div data-id="__l_${_tmpId}"></div>`;
 		});
 
-		const fragment = this._createDocumentElement('template');
+		const fragment = this._createDocumentElement("template");
 		fragment.innerHTML = Handlebars.compile(this.render())(propsAndStubs);
 
 		Object.values(this.children).forEach((child) => {
 			// eslint-disable-next-line no-underscore-dangle
-			const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
+			const stub = fragment.content.querySelector(
+				`[data-id="${child._id}"]`,
+			);
 			stub?.replaceWith(child.getContent());
 		});
 		const newElement = fragment.content.firstElementChild as HTMLElement;
 
 		Object.entries(this.lists).forEach(([, child]) => {
-			const listCont = this._createDocumentElement('template');
+			const listCont = this._createDocumentElement("template");
 			child.forEach((item) => {
 				if (item instanceof Block) {
 					listCont.content.append(item.getContent());
@@ -176,7 +189,9 @@ export default class Block<P extends BlockProps = {}> {
 					listCont.content.append(`${item}`);
 				}
 			});
-			const stub = fragment.content.querySelector(`[data-id="__l_${_tmpId}"]`);
+			const stub = fragment.content.querySelector(
+				`[data-id="__l_${_tmpId}"]`,
+			);
 			stub?.replaceWith(listCont.content);
 		});
 
@@ -190,7 +205,7 @@ export default class Block<P extends BlockProps = {}> {
 	}
 
 	protected render(): string {
-		return '';
+		return "";
 	}
 
 	public getContent(): HTMLElement {
@@ -203,7 +218,7 @@ export default class Block<P extends BlockProps = {}> {
 		return new Proxy(props, {
 			get(target, prop) {
 				const value = target[prop as keyof P];
-				return typeof value === 'function' ? value.bind(target) : value;
+				return typeof value === "function" ? value.bind(target) : value;
 			},
 			set(target, prop, value) {
 				const oldTarget = { ...target };
@@ -214,7 +229,7 @@ export default class Block<P extends BlockProps = {}> {
 				return true;
 			},
 			deleteProperty() {
-				throw new Error('Нет доступа');
+				throw new Error("Нет доступа");
 			},
 		});
 	}
@@ -227,14 +242,14 @@ export default class Block<P extends BlockProps = {}> {
 	public show(): void {
 		const content = this.getContent();
 		if (content) {
-			content.style.display = 'block';
+			content.style.display = "block";
 		}
 	}
 
 	public hide(): void {
 		const content = this.getContent();
 		if (content) {
-			content.style.display = 'none';
+			content.style.display = "none";
 		}
 	}
 }

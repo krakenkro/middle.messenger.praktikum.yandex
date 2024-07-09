@@ -4,12 +4,7 @@ import { loginPattern, passwordPattern } from '../../utils/patterns';
 
 export default class PageLogin extends Block<Record<string, unknown>> {
 	constructor(props: Record<string, unknown>) {
-		super({
-			...props,
-			baseTitle: new BaseTitle({
-				title: 'Авторизация',
-			}),
-		});
+		super({ ...props, baseTitle: new BaseTitle({ title: 'Авторизация' }) });
 	}
 
 	protected init(): void {
@@ -40,8 +35,7 @@ export default class PageLogin extends Block<Record<string, unknown>> {
 					.querySelector('input') as HTMLInputElement;
 
 				const isLoginValid = inputFieldLogin.validate(loginElement);
-				const isPasswordValid =
-					inputFieldPassword.validate(passwordElement);
+				const isPasswordValid = inputFieldPassword.validate(passwordElement);
 
 				if (isLoginValid && isPasswordValid) {
 					console.log(loginElement.value, passwordElement.value);
@@ -54,13 +48,7 @@ export default class PageLogin extends Block<Record<string, unknown>> {
 			page: 'registration',
 		});
 
-		this.children = {
-			...this.children,
-			inputFieldLogin,
-			inputFieldPassword,
-			button,
-			link,
-		};
+		this.children = { ...this.children, inputFieldLogin, inputFieldPassword, button, link };
 	}
 
 	protected render() {

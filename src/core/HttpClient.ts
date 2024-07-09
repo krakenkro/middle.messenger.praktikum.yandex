@@ -25,18 +25,13 @@ export default class HttpClient {
 				if (xhr.status >= 200 && xhr.status < 300) {
 					resolve(JSON.parse(xhr.responseText));
 				} else {
-					reject({
-						status: xhr.status,
-						statusText: xhr.statusText,
-						response: xhr.responseText,
-					});
+					reject(new Error(`Request failed with status ${xhr.status}: ${xhr.statusText}`));
 				}
 			};
 
 			xhr.onerror = () => {
 				reject(new Error(`Request failed with status ${xhr.status}: ${xhr.statusText}`));
 			};
-
 
 			if (method === 'GET' || !body) {
 				xhr.send();
@@ -49,10 +44,7 @@ export default class HttpClient {
 
 	private buildQueryString(params: Record<string, any>): string {
 		return Object.keys(params)
-			.map(
-				(key) =>
-					`${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`,
-			)
+			.map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
 			.join('&');
 	}
 

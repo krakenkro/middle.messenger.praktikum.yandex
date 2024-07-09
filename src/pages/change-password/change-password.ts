@@ -17,14 +17,14 @@ export default class ChangePassword extends Block<Record<string, unknown>> {
 			name: string,
 			pattern: string,
 			type: string = 'text',
-		): InputField =>
-			new InputField({
-				className: 'auth-form__input',
-				title,
-				name,
-				pattern,
-				type,
-			});
+		): InputField => new InputField({
+			className: 'auth-form__input',
+			title,
+			name,
+			pattern,
+			type,
+		});
+
 		const inputFields = {
 			inputFieldPassword: createInputField(
 				'Старый пароль',
@@ -45,6 +45,7 @@ export default class ChangePassword extends Block<Record<string, unknown>> {
 				'password',
 			),
 		};
+
 		const button = new Button({
 			text: 'Сохранить',
 			onClick: (e: MouseEvent) => {
@@ -55,42 +56,30 @@ export default class ChangePassword extends Block<Record<string, unknown>> {
 				const newPasswordElement = inputFields.inputFieldNewPassword
 					.getContent()
 					.querySelector('input') as HTMLInputElement;
-				const repeatPasswordElement =
-					inputFields.inputFieldPasswordRepeat
-						.getContent()
-						.querySelector('input') as HTMLInputElement;
+				const repeatPasswordElement = inputFields.inputFieldPasswordRepeat
+					.getContent()
+					.querySelector('input') as HTMLInputElement;
 
 				const isOldPasswordValid = oldPasswordElement.checkValidity();
 				const isNewPasswordValid = newPasswordElement.checkValidity();
-				const isRepeatPasswordValid =
-					repeatPasswordElement.checkValidity();
+				const isRepeatPasswordValid = repeatPasswordElement.checkValidity();
 
 				inputFields.inputFieldPassword.setProps({
 					isValid: isOldPasswordValid,
-					errorMessage: isOldPasswordValid
-						? ''
-						: 'Invalid old password',
+					errorMessage: isOldPasswordValid ? '' : 'Invalid old password',
 				});
 
 				inputFields.inputFieldNewPassword.setProps({
 					isValid: isNewPasswordValid,
-					errorMessage: isNewPasswordValid
-						? ''
-						: 'Invalid new password',
+					errorMessage: isNewPasswordValid ? '' : 'Invalid new password',
 				});
 
 				inputFields.inputFieldPasswordRepeat.setProps({
 					isValid: isRepeatPasswordValid,
-					errorMessage: isRepeatPasswordValid
-						? ''
-						: 'Passwords do not match',
+					errorMessage: isRepeatPasswordValid ? '' : 'Passwords do not match',
 				});
 
-				if (
-					isOldPasswordValid &&
-					isNewPasswordValid &&
-					isRepeatPasswordValid
-				) {
+				if (isOldPasswordValid && isNewPasswordValid && isRepeatPasswordValid) {
 					console.log({
 						oldPassword: oldPasswordElement.value,
 						newPassword: newPasswordElement.value,
@@ -99,6 +88,7 @@ export default class ChangePassword extends Block<Record<string, unknown>> {
 				}
 			},
 		});
+
 		const sidebar = new Sidebar({});
 
 		this.children = {

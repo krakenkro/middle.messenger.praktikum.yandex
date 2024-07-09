@@ -22,8 +22,7 @@ export default class PageRegistration extends Block<Record<string, unknown>> {
 			name: string,
 			pattern: string,
 			type: string = 'text',
-		): InputField =>
-			new InputField({
+		): InputField => new InputField({
 				className: 'auth-form__input',
 				title,
 				name,

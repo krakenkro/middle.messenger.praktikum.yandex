@@ -4,9 +4,7 @@ import './chat.scss';
 
 export default class PageChat extends Block<Record<string, unknown>> {
 	constructor(props: Record<string, unknown>) {
-		super({
-			...props,
-		});
+		super({ ...props });
 	}
 
 	protected init(): void {
@@ -24,17 +22,9 @@ export default class PageChat extends Block<Record<string, unknown>> {
 			// chatitems: this.lists.items
 		});
 
-		const chatWindow = new ChatWindow({
-			ickname: 'Алуа',
-		});
+		const chatWindow = new ChatWindow({ nickname: 'Алуа' });
 
-		this.children = {
-			...this.children,
-			sidebar,
-			input,
-			chatItems,
-			chatWindow,
-		};
+		this.children = { ...this.children, sidebar, input, chatItems, chatWindow };
 	}
 
 	protected render() {

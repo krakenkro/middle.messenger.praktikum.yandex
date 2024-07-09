@@ -8,8 +8,7 @@ export default class PageProfile extends Block<Record<string, unknown>> {
 	}
 
 	protected init(): void {
-		const createLinks = (text: string, page: string): Link =>
-			new Link({ text, page });
+		const createLinks = (text: string, page: string): Link => new Link({ text, page });
 
 		const links = {
 			linkEdit: createLinks('Изменить данные', 'edit'),

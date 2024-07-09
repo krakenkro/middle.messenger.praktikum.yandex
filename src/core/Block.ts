@@ -2,12 +2,14 @@ import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
 import EventBus from './EventBus';
 
-type BlockProps = Record<string, any>;
+/* typescript-eslint-disable @typescript-eslint/no-implicit-any */
+type BlockProps = {
+	[key: string]: any;
+};
 
-// eslint-disable-next-line no-use-before-define
 type BlockChildren = Record<string, Block>;
 
-type BlockLists = Record<string, any[]>;
+type BlockLists = Record<string, Block[]>;
 
 export default class Block<P extends BlockProps = {}> {
 	static EVENTS = {
@@ -43,20 +45,27 @@ export default class Block<P extends BlockProps = {}> {
 	}
 
 	private _addEvents() {
-		const { events = {} } = this.props;
-		Object.keys(events).forEach((eventName) => {
-			this._element?.addEventListener(eventName, events[eventName], true);
+		const { events = {} as Record<string, EventListenerOrEventListenerObject[]> } = this.props;
+		Object.entries(events).forEach(([eventName, eventHandlers]) => {
+			if (Array.isArray(eventHandlers)) {
+				eventHandlers.forEach((handler) => {
+					this._element?.addEventListener(eventName, handler, true);
+				});
+			} else {
+				this._element?.addEventListener(eventName, eventHandlers as EventListener, true);
+			}
 		});
 	}
 
 	private _removeEvents(): void {
-		const { events = {} } = this.props;
-		Object.keys(events).forEach((eventName) => {
-			// eslint-disable-next-line no-undef
-			if (Array.isArray(events[eventName])) {
-				events[eventName].forEach(
+		const { events = {} as Record<string, EventListenerOrEventListenerObject[]> } = this.props;
+		Object.entries(events).forEach(([eventName, eventHandlers]) => {
+			if (Array.isArray(eventHandlers)) {
+				eventHandlers.forEach(
 					(event: EventListenerOrEventListenerObject) => this._element?.removeEventListener(eventName, event),
 				);
+			} else {
+				this._element?.removeEventListener(eventName, eventHandlers as EventListener);
 			}
 		});
 	}
@@ -75,7 +84,7 @@ export default class Block<P extends BlockProps = {}> {
 	}
 
 	// eslint-disable-next-line class-methods-use-this
-	protected init(): void {}
+	protected init(): void { }
 
 	private _componentDidMount(): void {
 		this.componentDidMount();
@@ -91,7 +100,7 @@ export default class Block<P extends BlockProps = {}> {
 		});
 	}
 
-	protected componentDidMount(): void {}
+	protected componentDidMount(): void { }
 
 	public dispatchComponentDidMount(): void {
 		this.eventBus().emit(Block.EVENTS.FLOW_CDM);
@@ -124,7 +133,7 @@ export default class Block<P extends BlockProps = {}> {
 			if (value instanceof Block) {
 				children[key] = value;
 			} else if (Array.isArray(value)) {
-				lists[key] = value;
+				lists[key] = value as Block[];
 			} else {
 				props[key] = value;
 			}
@@ -132,14 +141,6 @@ export default class Block<P extends BlockProps = {}> {
 
 		return { children, props: props as P, lists };
 	}
-
-	// addAttributes() {
-	//     const {attr = {}} = this.props;
-
-	//     Object.entries(attr).forEach(([key, value: unknown]) => {
-	//       this._element?.setAttribute(key, value);
-	//     });
-	//   }
 
 	public setProps(nextProps: Partial<P>): void {
 		if (!nextProps) {
@@ -173,10 +174,11 @@ export default class Block<P extends BlockProps = {}> {
 		Object.values(this.children).forEach((child) => {
 			// eslint-disable-next-line no-underscore-dangle
 			const stub = fragment.content.querySelector(
-				`[data-id="${child._id}"]`,
+				`div[data-id="${child._id}"]`,
 			);
 			stub?.replaceWith(child.getContent());
 		});
+
 		const newElement = fragment.content.firstElementChild as HTMLElement;
 
 		Object.entries(this.lists).forEach(([, child]) => {
@@ -189,7 +191,7 @@ export default class Block<P extends BlockProps = {}> {
 				}
 			});
 			const stub = fragment.content.querySelector(
-				`[data-id="__l_${_tmpId}"]`,
+				`div[data-id="__l_${_tmpId}"]`,
 			);
 			stub?.replaceWith(listCont.content);
 		});

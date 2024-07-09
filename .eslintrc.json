@@ -4,21 +4,32 @@
 		"browser": true,
 		"node": true
 	},
-	"extends": "airbnb",
-	"parser": "@typescript-eslint/parser",
+	"extends": ["airbnb", "plugin:@typescript-eslint/recommended"],
 	"plugins": ["@typescript-eslint"],
+	"parser": "@typescript-eslint/parser",
 	"rules": {
 		"no-console": "off",
 		"@typescript-eslint/no-unused-vars": 2,
+		"@typescript-eslint/no-explicit-any": "off",
+		"no-use-before-define": ["off"],
+		"@typescript-eslint/no-this-alias": "off",
+		"@typescript-eslint/ban-types": [
+			"error",
+			{
+				"types": {
+					"{}": false
+				}
+			}
+		],
 		"max-len": "off",
 		"no-tabs": "off",
 		"semi": ["error", "always"],
 		"linebreak-style": ["warn", "unix"],
-		"object-curly-newline": ["error", { "multiline": true }],
+		"object-curly-newline": ["error", { "multiline": true, "consistent": true }],
 		"import/no-extraneous-dependencies": "off",
 		"quotes": ["error", "single"],
-    	"space-before-function-paren": ["warn", "never"],
-    	"no-undef": "off",
+		"space-before-function-paren": ["warn", "never"],
+		"no-undef": "off",
 		"no-underscore-dangle": ["warn", { "allowAfterThis": true, "allow": ["_id"] }],
 		"class-methods-use-this": "off",
 		"import/prefer-default-export": "off",
@@ -39,7 +50,9 @@
 			{
 				"ignore": ["^@/"]
 			}
-		]
+		],
+		"implicit-arrow-linebreak": ["error", "beside"],
+		"comma-dangle": ["error", "always-multiline"]
 	},
 	"settings": {
 		"import/resolver": {

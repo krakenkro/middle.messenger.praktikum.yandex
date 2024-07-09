@@ -1,11 +1,16 @@
+type EventCallback<Args extends any[] = any[]> = (...args: Args) => void;
+
 export default class EventBus {
-	private listeners: Record<string, Function[]>;
+	private listeners: Record<string, EventCallback[]>;
 
 	constructor() {
 		this.listeners = {};
 	}
 
-	on<F extends (...args: any) => void>(event: string, callback: F) {
+	on<Event extends string, Callback extends EventCallback>(
+		event: Event,
+		callback: Callback,
+	): void {
 		if (!this.listeners[event]) {
 			this.listeners[event] = [];
 		}
@@ -13,7 +18,10 @@ export default class EventBus {
 		this.listeners[event]!.push(callback);
 	}
 
-	off<F extends (...args: any) => void>(event: string, callback: F) {
+	off<Event extends string, Callback extends EventCallback>(
+		event: Event,
+		callback: Callback,
+	): void {
 		if (!this.listeners[event]) {
 			throw new Error(`Нет события: ${event}`);
 		}
@@ -23,7 +31,10 @@ export default class EventBus {
 		);
 	}
 
-	emit<F extends (...args: any) => void>(event: string, ...args: Parameters<F>) {
+	emit<Event extends string, Args extends any[]>(
+		event: Event,
+		...args: Args
+	): void {
 		if (!this.listeners[event]) {
 			throw new Error(`Нет события: ${event}`);
 		}

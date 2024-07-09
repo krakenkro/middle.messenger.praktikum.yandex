@@ -16,9 +16,8 @@ export default class PageEdit extends Block<Record<string, unknown>> {
 			title: string,
 			name: string,
 			pattern: string,
-			type: string = 'text'
-		): InputField =>
-			new InputField({ className: 'auth-form__input', title, name, pattern, type });
+			type: string = 'text',
+		): InputField => new InputField({ className: 'auth-form__input', title, name, pattern, type });
 
 		const inputFields = {
 			inputFieldEmail: createInputField('Почта', 'email', emailPattern),

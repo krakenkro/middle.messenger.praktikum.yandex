@@ -23,12 +23,12 @@ export default class PageRegistration extends Block<Record<string, unknown>> {
 			pattern: string,
 			type: string = 'text',
 		): InputField => new InputField({
-				className: 'auth-form__input',
-				title,
-				name,
-				type,
-				pattern,
-			});
+			className: 'auth-form__input',
+			title,
+			name,
+			type,
+			pattern,
+		});
 
 		const inputFields = {
 			inputFieldEmail: createInputField('Email', 'email', emailPattern),

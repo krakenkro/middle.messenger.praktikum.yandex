@@ -2,7 +2,7 @@ import Block from '../../core/Block';
 import { Link } from '../link';
 
 export class Error extends Block {
-	constructor(props: Record<string, any>) {
+	constructor(props: Record<string, unknown>) {
 		super({
 			...props,
 			link: new Link({

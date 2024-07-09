@@ -8,12 +8,12 @@ export default class HttpClient {
 	private request(
 		method: string,
 		endpoint: string,
-		body: any = null,
+		body: unknown = null,
 		headers: Record<string, string> = {},
 	): Promise<any> {
 		return new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
-			const url = method === 'GET' && body ? `${endpoint}?${this.buildQueryString(body)}` : endpoint;
+			const url = method === 'GET' && body ? `${endpoint}?${this.buildQueryString(body as {})}` : endpoint;
 
 			xhr.open(method, this.baseUrl + url);
 
@@ -42,41 +42,41 @@ export default class HttpClient {
 		});
 	}
 
-	private buildQueryString(params: Record<string, any>): string {
+	private buildQueryString(params: Record<string, unknown>): string {
 		return Object.keys(params)
-			.map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
+			.map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(params[key] as string)}`)
 			.join('&');
 	}
 
 	public get(
 		endpoint: string,
-		params: Record<string, any> = {},
+		params: Record<string, unknown> = {},
 		headers: Record<string, string> = {},
-	): Promise<any> {
+	): Promise<unknown> {
 		return this.request('GET', endpoint, params, headers);
 	}
 
 	public post(
 		endpoint: string,
-		body: any,
+		body: unknown,
 		headers: Record<string, string> = {},
-	): Promise<any> {
+	): Promise<unknown> {
 		return this.request('POST', endpoint, body, headers);
 	}
 
 	public put(
 		endpoint: string,
-		body: any,
+		body: unknown,
 		headers: Record<string, string> = {},
-	): Promise<any> {
+	): Promise<unknown> {
 		return this.request('PUT', endpoint, body, headers);
 	}
 
 	public delete(
 		endpoint: string,
-		body: any = null,
+		body: unknown = null,
 		headers: Record<string, string> = {},
-	): Promise<any> {
+	): Promise<unknown> {
 		return this.request('DELETE', endpoint, body, headers);
 	}
 }

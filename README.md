@@ -4,12 +4,12 @@
 
 ## Используемые технологии
 
-- HTML
-- CSS (с PostCSS)
-- TypeScript
-- Handlebars
-- Express
-- Netlify
+-   HTML
+-   CSS (с PostCSS)
+-   TypeScript
+-   Handlebars
+-   Express
+-   Netlify
 
 ## Установка
 
@@ -21,11 +21,11 @@
 
 ## Домен
 
-[Сайт](https://deploy--frolicking-caramel-fa77a1.netlify.app/login/)
+[Сайт](https://deploy--frolicking-caramel-fa77a1.netlify.app/)
 
 ## Ссылки на страницы
 
-[Авторизация](https://akopyants-chat.netlify.app/#login)
+[Авторизация](https://deploy--frolicking-caramel-fa77a1.netlify.app/login)
 
 [Регистрация](https://deploy--frolicking-caramel-fa77a1.netlify.app/registration)
 

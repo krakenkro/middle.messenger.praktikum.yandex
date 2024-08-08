@@ -3,17 +3,6 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
 	root: resolve(__dirname, 'src'),
-	build: {
-		outDir: resolve(__dirname, 'dist'),
-	},
-	server: {
-		port: 3000
-	},
-	css: {
-		preprocessorOptions: {
-			scss: {
-				additionalData: `@import "./src/assets/scss/global.scss";`
-			}
-		}
-	}
+	build: { outDir: resolve(__dirname, 'dist') },
+	server: { port: 3000 },
 });

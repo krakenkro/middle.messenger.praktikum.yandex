@@ -1,83 +1,83 @@
-
 .chat-window {
-    border-left: 1px solid #ccc;
-    display: flex;
-    flex-direction: column;
-    flex: 3;
-    padding: 20px;
+	border-left: 1px solid #ccc;
+	display: flex;
+	flex-direction: column;
+	flex: 3;
+	padding: 20px;
 
-    &__header {
-        background-color: #f0f0f0;
-        padding: 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+	&__header {
+		background-color: #f0f0f0;
+		padding: 10px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
 
-    &__form {
-        display: flex;
-        gap: 10px;
-        padding: 10px;
-    }
+	&__form {
+		display: flex;
+		gap: 10px;
+		padding: 10px;
+	}
 
-    &__form-input {
-        flex: 1;
-    }
+	&__form-input {
+		flex: 1;
+	}
 
-    &__form-paperclip {
-        border: none;
-        background: inherit;
-    }
+	&__form-paperclip {
+		border: none;
+		background: inherit;
+	}
 
-    &__form-paperclip img {
-        width: 25px;
-        height: 25px;
-        cursor: pointer;
-    }
+	&__form-paperclip img {
+		width: 25px;
+		height: 25px;
+		cursor: pointer;
+	}
 
-    &__user-info {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
+	&__user-info {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
 
-    &__menu {
-        border: none;
-        background: inherit;
-        img {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-        }
-    }
+	&__menu {
+		border: none;
+		background: inherit;
 
-    &__area {
-        padding: 10px;
-        flex-grow: 1;
-    }
+		img {
+			width: 20px;
+			height: 20px;
+			cursor: pointer;
+		}
+	}
 
-    &__message {
-        margin-bottom: 10px;
-        display: flex;
-        justify-content: space-between;
-    }
+	&__area {
+		padding: 10px;
+		flex-grow: 1;
+	}
 
-    &__message-content {
-        padding: 5px 10px;
-        border-radius: 10px;
-    }
+	&__message {
+		margin-bottom: 10px;
+		display: flex;
+		justify-content: space-between;
+	}
 
-    &__message_received .chat-window__message-content {
-        background-color: #e0e0e0;
-    }
+	&__message-content {
+		padding: 5px 10px;
+		border-radius: 10px;
+	}
 
-    &__message_sent .chat-window__message-content {
-        background-color: #007bff;
-        color: #fff;
-    }
+	&__message_received &__message-content {
+		background-color: #e0e0e0;
+	}
 
-    &__message-time {
-        font-size: 16px;
-        margin-left: 10px;
-    }
+	&__message_sent &__message-content {
+		background-color: #007bff;
+		color: #fff;
+	}
+
+	&__message-time {
+		font-size: 16px;
+		margin-left: 10px;
+	}
 }

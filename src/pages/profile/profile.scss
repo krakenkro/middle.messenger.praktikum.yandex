@@ -1,33 +1,33 @@
 .profile {
-    display: flex;
+	display: flex;
 
-    &__wrapper {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-    }
+	&__wrapper {
+		max-width: 600px;
+		margin: 0 auto;
+		padding: 20px;
+	}
 
-    &__header {
-        text-align: center;
-    }
+	&__header {
+		text-align: center;
+	}
 
-    &__info {
-        margin-right: 20px;
-    }
+	&__info {
+		margin-right: 20px;
+	}
 
-    &__info-item {
-        margin-bottom: 10px;
-    }
-    
-    &__info-label {
-        font-weight: bold;
-    }
+	&__info-item {
+		margin-bottom: 10px;
+	}
 
-    &__actions {
-        margin-top: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        align-items: start;
-    }
+	&__info-label {
+		font-weight: bold;
+	}
+
+	&__actions {
+		margin-top: 20px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		align-items: start;
+	}
 }

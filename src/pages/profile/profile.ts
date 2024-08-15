@@ -1,8 +1,10 @@
 import { Avatar, Link, Sidebar } from '../../components';
 import Block from '../../core/Block';
+import { connect } from '../../core/HOC';
+import { State } from '../../core/Store';
 import './profile.scss';
 
-export default class PageProfile extends Block<Record<string, unknown>> {
+class PageProfile extends Block<Record<string, unknown>> {
 	constructor(props: Record<string, unknown>) {
 		super({ ...props });
 	}
@@ -31,38 +33,40 @@ export default class PageProfile extends Block<Record<string, unknown>> {
 	}
 
 	protected render() {
-		return `
+        const { email, login, first_name, second_name, display_name, phone } = this.props;
+
+        return `
         <section class="profile">
             {{{ sidebar }}}
             <div class="profile__wrapper">
                 <div class="profile__header">
                     {{{ avatar }}}
-                    <h1 class="profile-username">Иван</h1>
+                    <h1 class="profile-username">${first_name}</h1>
                 </div>
                 <div class="profile__info">
                     <div class="profile__info-item">
                         <span class="profile__info-label">Почта:</span>
-                        <span class="profile__info-value">pochta@yandex.ru</span>
+                        <span class="profile__info-value">${email}</span>
                     </div>
                     <div class="profile__info-item">
                         <span class="profile__info-label">Логин:</span>
-                        <span class="profile__info-value">ivanivanov</span>
+                        <span class="profile__info-value">${login}</span>
                     </div>
                     <div class="profile__info-item">
                         <span class="profile__info-label">Имя:</span>
-                        <span class="profile__info-value">Иван</span>
+                        <span class="profile__info-value">${first_name}</span>
                     </div>
                     <div class="profile__info-item">
                         <span class="profile__info-label">Фамилия:</span>
-                        <span class="profile__info-value">Иванов</span>
+                        <span class="profile__info-value">${second_name}</span>
                     </div>
                     <div class="profile__info-item">
                         <span class="profile__info-label">Имя в чате:</span>
-                        <span class="profile__info-value">Иван</span>
+                        <span class="profile__info-value">${display_name}</span>
                     </div>
                     <div class="profile__info-item">
                         <span class="profile__info-label">Телефон:</span>
-                        <span class="profile__info-value">+7 (909) 967 30 30</span>
+                        <span class="profile__info-value">${phone}</span>
                     </div>
                 </div>
                 <div class="profile__actions">
@@ -73,5 +77,17 @@ export default class PageProfile extends Block<Record<string, unknown>> {
             </div>
         </section>
         `;
-	}
+    }
 }
+
+const mapStateToProps = (state: State) => ({
+    email: state.user?.email,
+    login: state.user?.login,
+    first_name: state.user?.first_name,
+    second_name: state.user?.second_name,
+    display_name: state.user?.display_name,
+    phone: state.user?.phone,
+    avatar: state.user?.avatar,
+});
+
+export default connect(mapStateToProps)(PageProfile);

@@ -1,8 +1,17 @@
 import { BaseTitle, Button, InputField, Link } from '../../components';
 import Block from '../../core/Block';
 import { loginPattern, passwordPattern } from '../../utils/patterns';
+import { auth } from '../../services/auth';
+import { connect } from '../../core/HOC';
+import { State } from '../../core/Store';
 
-export default class PageLogin extends Block<Record<string, unknown>> {
+const mapStateToProps = (state: State) => {
+    return {
+        user: state.user,
+    };
+};
+
+class PageLogin extends Block<Record<string, unknown>> {
 	constructor(props: Record<string, unknown>) {
 		super({ ...props, baseTitle: new BaseTitle({ title: 'Авторизация' }) });
 	}
@@ -25,7 +34,7 @@ export default class PageLogin extends Block<Record<string, unknown>> {
 
 		const button = new Button({
 			text: 'Войти',
-			onClick: (e: MouseEvent) => {
+			onClick: async (e: MouseEvent) => {
 				e.preventDefault();
 				const loginElement = inputFieldLogin
 					.getContent()
@@ -38,7 +47,9 @@ export default class PageLogin extends Block<Record<string, unknown>> {
 				const isPasswordValid = inputFieldPassword.validate(passwordElement);
 
 				if (isLoginValid && isPasswordValid) {
-					console.log(loginElement.value, passwordElement.value);
+					const login = loginElement.value;
+					const password = passwordElement.value;
+					await auth.signin({ login, password });
 				}
 			},
 		});
@@ -65,3 +76,4 @@ export default class PageLogin extends Block<Record<string, unknown>> {
         `;
 	}
 }
+export default connect(mapStateToProps)(PageLogin);

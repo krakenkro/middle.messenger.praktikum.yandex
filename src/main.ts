@@ -1,9 +1,8 @@
 import Handlebars from 'handlebars';
+import Router from './core/Router';
 import * as Components from './components';
 import * as Pages from './pages';
-import Block from './core/Block';
-
-type ClassConstructor<T = any> = new (...args: any[]) => T;
+import { renderApp } from './core/RenderApp';
 const stubs = {
 	items: [
 		{
@@ -28,59 +27,28 @@ const stubs = {
 		},
 	],
 };
-const pages: Record<
-	string,
-	[ClassConstructor, Record<string, unknown | undefined>]
-> = {
-	404: [Pages.Page404, {}],
-	500: [Pages.Page500, {}],
-	login: [Pages.PageLogin, {}],
-	registration: [Pages.PageRegistration, {}],
-	chat: [Pages.PageChat, stubs],
-	profile: [Pages.PageProfile, {}],
-	edit: [Pages.PageEdit, {}],
-	'change-password': [Pages.ChangePassword, {}],
-};
 
 Object.entries(Components).forEach(([name, component]) => {
 	Handlebars.registerPartial(name, component.toString());
 });
 
-function navigate(page: string): void {
-	const [source, context] = pages[page];
-	const container = document.getElementById('app');
+const pageLogin = new Pages.PageLogin({});
+const pageRegistration = new Pages.PageRegistration({});
+const pageChat = new Pages.PageChat(stubs);
+const pageProfile = new Pages.PageProfile({});
+const pageEdit = new Pages.PageEdit({});
+const changePassword = new Pages.ChangePassword({});
+const page500 = new Pages.Page500({});
+const page404 = new Pages.Page404({});
 
-	if (source instanceof Object) {
-		// eslint-disable-next-line no-shadow, new-cap
-		const page = new source(context) as Block<Record<string, unknown>>;
-		if (container !== null) {
-			container.innerHTML = '';
-			container.append(page.getContent() as Node);
-			page.dispatchComponentDidMount();
-		}
-		return;
-	}
+Router.use('/', pageLogin)
+	.use('/registration', pageRegistration)
+	.use('/chat', pageChat)
+	.use('/profile', pageProfile)
+	.use('/edit', pageEdit)
+	.use('/change-password', changePassword)
+	.use('/500', page500)
+	.use('*', page404)
+	.start();
 
-	if (container !== null) {
-		container.innerHTML = Handlebars.compile(source)(context);
-	}
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-	const page = window.location.pathname.substring(1);
-	if (page) {
-		navigate(page);
-	} else {
-		navigate('chat');
-	}
-});
-document.addEventListener('click', (e: MouseEvent) => {
-	const page = (e.target as HTMLElement).getAttribute('page');
-
-	if (page) {
-		window.location.pathname = page;
-
-		e.preventDefault();
-		e.stopImmediatePropagation();
-	}
-});
+document.addEventListener('DOMContentLoaded', () => renderApp());

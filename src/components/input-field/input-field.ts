@@ -25,6 +25,10 @@ export class InputField extends Block<InputFieldProps> {
 		}
 	}
 
+	getValue() {
+        return this.props.value;
+    }
+
 	public validate(inputElement: HTMLInputElement) {
 		const { pattern } = this.props;
 		if (pattern) {

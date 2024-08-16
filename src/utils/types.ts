@@ -46,12 +46,19 @@ export interface Chat {
     }
 }
 
-export interface Password{
+export interface Password {
     oldPassword: string,
     newPassword: string
 }
 
-export type ChatInteractionData = {
+export interface ChatInteractionData {
     users: number[];
     chatId: number;
-  };
+};
+
+export interface MessageData {
+    content: string;
+    time: string;
+    user_id: number;
+    type: string;
+};

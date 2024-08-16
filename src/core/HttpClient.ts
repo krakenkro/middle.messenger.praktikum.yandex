@@ -1,12 +1,12 @@
 export default class HttpClient {
     private readonly baseUrl = 'https://ya-praktikum.tech/api/v2';
 
-    private async request(
+    private async request<T>(
         method: string,
         endpoint: string,
         body: unknown = null,
         headers: Record<string, string> = {}
-    ): Promise<any> {
+    ): Promise<T> {
         const url = method === 'GET' && body ? `${this.baseUrl + endpoint}?${this.buildQueryString(body as {})}` : this.baseUrl + endpoint;
         const options: RequestInit = {
             method,
@@ -21,15 +21,6 @@ export default class HttpClient {
             options.body = JSON.stringify(body);
         }
 
-        // if (body && !(body instanceof FormData)) {
-        //     options.body = JSON.stringify(body);
-        //     if (options.headers && typeof options.headers === 'object') {
-        //         (options.headers as Record<string, string>)['Content-Type'] = 'application/json';
-        //     }
-        // } else if (body instanceof FormData) {
-        //     options.body = body;
-        // }
-
         try {
             const response = await fetch(url, options);
             
@@ -42,7 +33,7 @@ export default class HttpClient {
             if (contentType.includes('application/json')) {
                 return response.json();
             } else {
-                return response.text();
+                return response.text() as unknown as T;
             }
         } catch (error) {
             console.error('Fetch Error:', error);
@@ -56,35 +47,35 @@ export default class HttpClient {
             .join('&');
     }
 
-    public get(
+    public get<T>(
         endpoint: string,
         params: Record<string, unknown> = {},
         headers: Record<string, string> = {}
-    ): Promise<unknown> {
-        return this.request('GET', endpoint, params, headers);
+    ): Promise<T> {
+        return this.request<T>('GET', endpoint, params, headers);
     }
 
-    public post(
+    public post<T>(
         endpoint: string,
         body: unknown,
         headers: Record<string, string> = {}
-    ): Promise<unknown> {
-        return this.request('POST', endpoint, body, headers);
+    ): Promise<T> {
+        return this.request<T>('POST', endpoint, body, headers);
     }
 
-    public put(
+    public put<T>(
         endpoint: string,
         body: unknown,
         headers: Record<string, string> = {}
-    ): Promise<unknown> {
-        return this.request('PUT', endpoint, body, headers);
+    ): Promise<T> {
+        return this.request<T>('PUT', endpoint, body, headers);
     }
 
-    public delete(
+    public delete<T>(
         endpoint: string,
         body: unknown = null,
         headers: Record<string, string> = {}
-    ): Promise<unknown> {
-        return this.request('DELETE', endpoint, body, headers);
+    ): Promise<T> {
+        return this.request<T>('DELETE', endpoint, body, headers);
     }
 }

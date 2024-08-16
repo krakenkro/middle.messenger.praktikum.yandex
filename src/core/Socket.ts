@@ -1,77 +1,103 @@
-import EventBus from './EventBus';
+export type WebSocketProps = {
+    userId: number;
+    chatId: number;
+    token: string;
+    callbackMessages: (data: any) => void;
+};
 
-class WebSocketService extends EventBus {
-    private socket: WebSocket | null = null;
-    private readonly url: string;
-    private pingInterval: number | null = null;
+export type Message = {
+    content: unknown;
+    type: string;
+};
 
-    constructor(url: string) {
-        super();
-        this.url = url;
+enum STATE {
+    CONNECTING,
+    OPEN,
+    CLOSING,
+    CLOSED
+}
+
+class Socket {
+    private socket: WebSocket;
+
+    protected _baseUrl: string;
+
+    protected _chatsUrl: string;
+
+    protected timeoutId: NodeJS.Timeout | number = 0;
+
+    protected callbackMessages: (data: any) => void;
+
+    chatId: number;
+
+    constructor({ userId, chatId, token, callbackMessages }: WebSocketProps) {
+        this._baseUrl = 'wss://ya-praktikum.tech/ws';
+        this._chatsUrl = `${this._baseUrl}/chats`;
+        this.chatId = chatId;
+        this.callbackMessages = callbackMessages;
+        this.socket = new WebSocket(
+            `${this._chatsUrl}/${userId}/${chatId}/${token}`
+        );
+
+        this.socket.onerror = this.error;
+        this.socket.onclose = this.close.bind(this);
+        this.socket.onmessage = this.message.bind(this);
+        this.socket.onopen = this.open.bind(this);
+
+        this.timeoutId = 0;
     }
 
-    public connect() {
-        this.socket = new WebSocket(this.url);
-
-        this.socket.addEventListener('open', this.onOpen.bind(this));
-        this.socket.addEventListener('close', this.onClose.bind(this));
-        this.socket.addEventListener('message', this.onMessage.bind(this));
-        this.socket.addEventListener('error', this.onError.bind(this));
-
-        // Пинговать сервер каждые 30 секунд
-        this.pingInterval = window.setInterval(() => {
-            if (this.socket && this.socket.readyState === WebSocket.OPEN) {
-                this.socket.send(JSON.stringify({ type: 'ping' }));
-            }
-        }, 30000);
+    public send(message: Message) {
+        this.socket.send(JSON.stringify(message));
     }
 
-    public disconnect() {
-        if (this.socket) {
-            this.socket.close();
-        }
-        if (this.pingInterval) {
-            clearInterval(this.pingInterval);
-            this.pingInterval = null;
-        }
+    public open(event: Event) {
+        console.log('The connection is established', event);
+        this.sendPing();
+        this.socket.send(
+            JSON.stringify({
+                content: '0',
+                type: 'get old'
+            })
+        );
     }
 
-    public send(data: unknown) {
-        if (this.socket && this.socket.readyState === WebSocket.OPEN) {
-            this.socket.send(JSON.stringify(data));
+    public close(event: CloseEvent) {
+        if (event.wasClean) {
+            console.log('Connection closed cleanly');
         } else {
-            console.error('WebSocket is not open. Ready state:', this.socket?.readyState);
+            console.log('Connection failure');
+        }
+
+        console.log(`Code: ${event.code} | Reason: ${event.reason}`);
+    }
+
+    public message(event: MessageEvent) {
+        try {
+            const data = JSON.parse(event.data);
+
+            if (data.type !== 'user connected' && data.type !== 'pong') {
+                this.callbackMessages(data);
+            }
+        } catch (error) {
+            console.log('Error receiving message', error);
         }
     }
 
-    private onOpen(event: Event) {
-        console.log('WebSocket connection opened:', event);
-        this.emit('open');
+    public error(event: Event) {
+        console.log('Error', event);
     }
 
-    private onClose(event: CloseEvent) {
-        console.log('WebSocket connection closed:', event);
-        this.emit('close');
-        this.reconnect();
+    public closeConnect() {
+        this.socket?.close(1000, 'The work is done');
     }
 
-    private onMessage(event: MessageEvent) {
-        const data = JSON.parse(event.data);
-        console.log('WebSocket message received:', data);
-        this.emit('message', data);
-    }
-
-    private onError(event: Event) {
-        console.error('WebSocket error:', event);
-        this.emit('error', event);
-    }
-
-    private reconnect() {
-        console.log('Reconnecting WebSocket...');
-        setTimeout(() => {
-            this.connect();
-        }, 5000);
+    protected sendPing() {
+        if (this.socket?.readyState === STATE.OPEN) {
+            this.send({ content: 'ping', type: 'ping' });
+            this.timeoutId = setTimeout(this.sendPing.bind(this), 20000);
+        }
     }
 }
 
-export default WebSocketService;
+export default Socket;

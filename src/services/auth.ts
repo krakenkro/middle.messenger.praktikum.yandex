@@ -11,7 +11,7 @@ class Auth {
 
     public async signup(data: Signup) {
         try {
-            const res = await authApi.signup(data);
+            await authApi.signup(data);
             await this.getUser();
             Router.go('/chat');
         } catch (error) {

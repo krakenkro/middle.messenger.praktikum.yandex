@@ -1,6 +1,7 @@
 import { BaseTitle, Button, InputField, Sidebar } from '../../components';
 import Block from '../../core/Block';
 import { passwordPattern } from '../../utils/patterns';
+import { userService } from '../../services/user';
 import './change-password.scss';
 
 export default class ChangePassword extends Block<Record<string, unknown>> {
@@ -48,7 +49,7 @@ export default class ChangePassword extends Block<Record<string, unknown>> {
 
 		const button = new Button({
 			text: 'Сохранить',
-			onClick: (e: MouseEvent) => {
+			onClick: async (e: MouseEvent) => {
 				e.preventDefault();
 				const oldPasswordElement = inputFields.inputFieldPassword
 					.getContent()
@@ -80,11 +81,10 @@ export default class ChangePassword extends Block<Record<string, unknown>> {
 				});
 
 				if (isOldPasswordValid && isNewPasswordValid && isRepeatPasswordValid) {
-					console.log({
+					await userService.changePassword({
 						oldPassword: oldPasswordElement.value,
 						newPassword: newPasswordElement.value,
-						repeatPassword: repeatPasswordElement.value,
-					});
+					})
 				}
 			},
 		});

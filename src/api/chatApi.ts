@@ -1,6 +1,8 @@
 import HttpClient from '../core/HttpClient';
 import { Chat, ChatInteractionData } from '../utils/types';
-
+interface UserTokenResponse {
+    token: string;
+}
 class ChatApi {
     private httpClient: HttpClient;
 
@@ -27,7 +29,10 @@ class ChatApi {
     public async deleteUserFromChat(data: ChatInteractionData) {
         return this.httpClient.delete('/chats', data);
     }
-    
+
+    public async getUserToken(chatId: number): Promise<UserTokenResponse> {
+        return this.httpClient.post(`/chats/token/${chatId}`, {});
+    }
 }
 
 export const chatApi = new ChatApi();
